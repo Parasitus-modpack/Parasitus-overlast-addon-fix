@@ -14,7 +14,7 @@ public class TabOverLast extends CreativeTabs
     }
 
     @Override
-    public ItemStack getTabIconItem()
+    public ItemStack createIcon()
     {
         return new ItemStack(ModItems.EVO_DEVICE);
     }

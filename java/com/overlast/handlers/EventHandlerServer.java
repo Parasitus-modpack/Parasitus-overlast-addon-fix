@@ -73,7 +73,6 @@ public class EventHandlerServer {
                     annimals.removePotionEffect(SRPPotions.BLEED_E);
                     annimals.removePotionEffect(SRPPotions.CORRO_E);
                     annimals.removePotionEffect(SRPPotions.VIRA_E);
-                    annimals.removePotionEffect(SRPPotions.EPEL_E);
                 }
             }
             if (event.getEntity() instanceof EntityVillager) {
@@ -83,7 +82,6 @@ public class EventHandlerServer {
                     villager.removePotionEffect(SRPPotions.FEAR_E);
                     villager.removePotionEffect(SRPPotions.BLEED_E);
                     villager.removePotionEffect(SRPPotions.CORRO_E);
-                    villager.removePotionEffect(SRPPotions.EPEL_E);
                 }
             }
         }
@@ -188,7 +186,6 @@ public class EventHandlerServer {
                     player.removePotionEffect(SRPPotions.BLEED_E);
                     player.removePotionEffect(SRPPotions.CORRO_E);
                     player.removePotionEffect(SRPPotions.VIRA_E);
-                    player.removePotionEffect(SRPPotions.EPEL_E);
                 }
             }
         }

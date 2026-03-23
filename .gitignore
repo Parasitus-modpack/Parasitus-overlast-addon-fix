@@ -1,0 +1,30 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# Temporary/work directories
+tmp/
+tmp-wrapper-build/
+.gradle-local/
+
+# Java
+*.class
+
+# Logs and archives
+*.log
+*.tmp
+*.swp
+*.zip
+
+# IDE/editor
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db

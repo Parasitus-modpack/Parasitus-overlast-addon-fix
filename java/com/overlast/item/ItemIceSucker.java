@@ -9,7 +9,7 @@ public class ItemIceSucker extends ItemFood {
     public ItemIceSucker(int hungerHeal, float saturation, boolean isWolfFood) {
         super(2, 0.2F, false);
         this.setMaxStackSize(32);
-        this.setUnlocalizedName(OverLast.MOD_ID + "." + name);
+        this.setTranslationKey(OverLast.MOD_ID + "." + name);
         this.setCreativeTab(TabOverLast.TAB_overlast);
         this.setRegistryName(name);
     }

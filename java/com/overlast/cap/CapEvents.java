@@ -91,7 +91,7 @@ public class CapEvents {
 
 			// Server-side
             if (!player.world.isRemote) {
-                IMessage msgGui = new HUDRenderPacket.HUDRenderMessage(SRPWorldData.get(player.getEntityWorld()).getEvolutionPhase(),SRPWorldData.get(player.getEntityWorld()).getTotalKills(),!OverConfig.MECHANICS.showRequestDirtyClock||(player.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).getItem() == SRPItems.itemEVClock || player.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND).getItem() == SRPItems.itemEVClock));
+                IMessage msgGui = new HUDRenderPacket.HUDRenderMessage(SRPWorldData.get(player.getEntityWorld()).getEvolutionPhase(),SRPWorldData.get(player.getEntityWorld()).getTotalKills(),true);
                 OverPackets.net.sendTo(msgGui, (EntityPlayerMP) player);
 
 				if(evoTimer<1200) {

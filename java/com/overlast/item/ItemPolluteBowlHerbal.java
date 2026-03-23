@@ -15,7 +15,7 @@ public class ItemPolluteBowlHerbal extends ItemFood {
     public ItemPolluteBowlHerbal(int hungerHeal, float saturation, boolean isWolfFood) {
         super(2, 0.3F, false);
         this.setMaxStackSize(8);
-        this.setUnlocalizedName(OverLast.MOD_ID + "." + name);
+        this.setTranslationKey(OverLast.MOD_ID + "." + name);
         this.setCreativeTab(TabOverLast.TAB_overlast);
         this.setRegistryName(name);
     }

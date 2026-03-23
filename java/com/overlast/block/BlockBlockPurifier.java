@@ -29,7 +29,7 @@ public class BlockBlockPurifier
     private final String name = "blockpurifier";
     public BlockBlockPurifier() {
         super(Material.SPONGE);
-        this.setUnlocalizedName(OverLast.MOD_ID + "."+name);
+        this.setTranslationKey(OverLast.MOD_ID + "." + name);
         this.setRegistryName(name);
         this.setCreativeTab(TabOverLast.TAB_overlast);
         this.setHardness(5.0F);
@@ -45,7 +45,7 @@ public class BlockBlockPurifier
         if (head.getItem() != Items.AIR) return flag;
 
             worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
-            ParasiteEventWorld.killBiome(worldIn, pos, 16);
+            ParasiteEventWorld.killBiome(worldIn, pos);
             int distanceY = pos.getY();
             for (int y = 0; y <= 255; y++) {
                 for (int x = -16; x <= 16; x++) {
@@ -80,7 +80,7 @@ public class BlockBlockPurifier
             }
             //worldIn.setBlockState(pos, Blocks.STONE.getDefaultState());
             for (int i = 0; i <= 3; i++) {
-                SRPMain.network.sendToAll((IMessage) new SRPPacketParticle(pos.up(0), 0.5F, 0.5F, (byte) 2));
+                SRPMain.network.sendToAll((IMessage) new SRPPacketParticle(pos, 0.5F, 0.5F));
             }
         return flag;
     }
@@ -89,11 +89,11 @@ public class BlockBlockPurifier
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (worldIn.isRemote)
             return;
-        ParasiteEventWorld.killBiome(worldIn, pos, 16);
+        ParasiteEventWorld.killBiome(worldIn, pos);
         worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 
         for (int i = 0; i <= 3; i++)
-            SRPMain.network.sendToAll((IMessage) new SRPPacketParticle(pos.up(0), 0.5F, 0.5F, (byte) 2));
+            SRPMain.network.sendToAll((IMessage) new SRPPacketParticle(pos, 0.5F, 0.5F));
     }
 }
 

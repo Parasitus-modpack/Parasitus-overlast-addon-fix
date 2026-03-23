@@ -62,7 +62,7 @@ public class ClientProxy extends CommonProxy {
 		}
 		else
 		{
-			return context.getServerHandler().player.mcServer;
+			return context.getServerHandler().player.getServer();
 		}
 	}
 

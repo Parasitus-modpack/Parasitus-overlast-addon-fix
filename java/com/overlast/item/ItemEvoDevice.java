@@ -28,7 +28,7 @@ public class ItemEvoDevice extends Item {
     public ItemEvoDevice() {
 
         // Set registry and unlocalized name.
-        this.setUnlocalizedName(OverLast.MOD_ID + "." + name);
+        this.setTranslationKey(OverLast.MOD_ID + "." + name);
         this.setCreativeTab(TabOverLast.TAB_overlast);
         this.setRegistryName(name);
         // Basic properties.

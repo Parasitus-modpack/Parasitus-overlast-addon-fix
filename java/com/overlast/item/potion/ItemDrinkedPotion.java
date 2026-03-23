@@ -124,7 +124,7 @@ public class ItemDrinkedPotion extends Item  {
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getTranslationKey(ItemStack stack) {
 
         if (stack.getMetadata() == 0) { return "item." + OverLast.MOD_ID + "." + "drinking_potion"; }
         else if (stack.getMetadata() == 1) { return "item." + OverLast.MOD_ID + "." + "drinking_potion_1"; }

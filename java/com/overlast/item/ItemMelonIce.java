@@ -9,7 +9,7 @@ public class ItemMelonIce extends ItemFood {
     public ItemMelonIce(int hungerHeal, float saturation, boolean isWolfFood) {
         super(4, 0.4F, false);
         this.setMaxStackSize(32);
-        this.setUnlocalizedName(OverLast.MOD_ID + "." + name);
+        this.setTranslationKey(OverLast.MOD_ID + "." + name);
         this.setCreativeTab(TabOverLast.TAB_overlast);
         this.setRegistryName(name);
         setAlwaysEdible();

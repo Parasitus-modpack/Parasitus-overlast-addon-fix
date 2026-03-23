@@ -31,7 +31,7 @@ public class ModItems {
 	public static final Item DUMPLING = new ItemSpringFestivalFood(4, 0.2F)
 			.setPotionEffect(new PotionEffect(MobEffects.SATURATION, 20), 0.06F)
 			.setAlwaysEdible()
-			.setUnlocalizedName(OverLast.MOD_ID + ".dumpling")
+			.setTranslationKey(OverLast.MOD_ID + ".dumpling")
 			.setRegistryName("dumpling");
 
 	public static final ItemEvoDevice EVO_DEVICE = new ItemEvoDevice();

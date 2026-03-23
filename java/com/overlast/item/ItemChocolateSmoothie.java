@@ -14,7 +14,7 @@ public class ItemChocolateSmoothie extends ItemFood  {
     public ItemChocolateSmoothie(int hungerHeal, float saturation, boolean isWolfFood) {
         super(4, 0.6F, false);
         this.setMaxStackSize(8);
-        this.setUnlocalizedName(OverLast.MOD_ID + "."+ name);
+        this.setTranslationKey(OverLast.MOD_ID + "." + name);
         this.setCreativeTab(TabOverLast.TAB_overlast);
         this.setRegistryName(name);
     }

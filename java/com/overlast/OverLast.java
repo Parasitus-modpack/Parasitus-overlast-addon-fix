@@ -22,7 +22,7 @@ public class OverLast {
 	public static final String MOD_NAME = "OverLast";
 	public static final String VERSION = "0.1.9";
 	public static final String MCVERSION = "1.12";
-	public static final String DEPENDENCIES = "required-after:forge@[14.23.1.2611,);required-after:srparasites@[1.9.1,)";
+	public static final String DEPENDENCIES = "required-after:forge@[14.23.1.2611,);required-after:srparasites";
 	public static final String RESOURCE_PREFIX = MOD_ID + ":"; // overlast:
 	
 	// Make an instance of the mod.
