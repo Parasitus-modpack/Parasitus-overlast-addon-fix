@@ -1,5 +1,6 @@
 package com.overlast.item;
 
+import com.dhanantry.scapeandrunparasites.world.SRPSaveData;
 import com.dhanantry.scapeandrunparasites.world.SRPWorldData;
 import com.overlast.OverLast;
 import com.overlast.creativetab.TabOverLast;
@@ -54,6 +55,8 @@ public class ItemEvoDevice extends Item {
             EntityPlayerMP player = (EntityPlayerMP) entityLiving;
 
             SRPWorldData data = SRPWorldData.get(world);
+            SRPSaveData saveData = SRPSaveData.get(world);
+            int phase = saveData.getEvolutionPhase(world.provider.getDimension());
 
             ArrayList<Integer> nodesX = data.getNodes("x");
             ArrayList<Integer> nodesY = data.getNodes("y");
@@ -62,7 +65,7 @@ public class ItemEvoDevice extends Item {
 
             if(nodesX.size()== 0) {
                 player.sendMessage(new TextComponentString("当前世界无可探测的节点,请继续提高警惕"));
-            }else if((int)(Math.random()*10)>=5&&SRPWorldData.get(player.getEntityWorld()).getEvolutionPhase()==7||(int)(Math.random()*10)>=2&&SRPWorldData.get(player.getEntityWorld()).getEvolutionPhase()==8) {
+            }else if((int)(Math.random()*10)>=5&&phase==7||(int)(Math.random()*10)>=2&&phase==8) {
                 player.sendMessage(new TextComponentString("节点探测器的频道似乎受到了干扰，机器已经过流损坏。"));
             }else {
                 String out = "警告，世界出现节点，请务必尽快清除。所有节点坐标为 (x, y, z, age): ";

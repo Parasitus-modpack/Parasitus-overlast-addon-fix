@@ -1,63 +1,444 @@
 itemGroup.overlast=Parasites Addon : OverLast
+
+#OverLast Item
 item.overlast.chocolate_smoothie.name=Chocolate Smoothie
+item.overlast.beef_pickaxe.name=Beef Pickaxe
+item.overlast.wooden_sword_plus.name=§6Wooden Sword +18
+item.overlast.wooden_sword_plus.tooltip=§6§owow!golden legendary!
+item.overlast.baseball_pole.name=§6Rod of Faith
+item.overlast.baseball_pole.tooltip=§7§oIf you get caught using a baseball bat again, you will repent in my room. -Pressel
 item.overlast.ice_spear.name=Ice Spear
+item.spartanshields:hero_shield.name=Hero's Shield
+item.spartanshields:hero_shield.tooltip=§a§oThe Anthem of man is the Anthem of courage
 item.overlast.pollute_bowl_herbal.name=Polluted Herbal
 item.overlast.bowl_herbal.name=Pure Herbal
 item.overlast.melon_ice.name=Melon Ice
 item.overlast.ice_sucker.name=Ice Sucker
 item.overlast.dumpling.name=Dumpling
 item.overlast.evo_device.name=Node Detector
+item.overlast.boss_chip.name=Origin Tentacle
 item.overlast.drinking_potion.name=Empty Potion Bottle
 item.overlast.drinking_potion_1.name=Parasites Purify Potion
 item.overlast.drinking_potion_2.name=Parasites Infect Potion
 item.overlast.drinking_potion_3.name=Advanced Parasites Infect Potion
 item.overlast.injected_potion.name=Injections
+item.overlast.drinking_potion.tooltip= sips
+item.overlast.drinking_potion.durability= durability
+item.overlast.drinking_potion.potion=Potion
 
+#Effect
+potion.effect.overlast:heat_radiation=Heat Radiation
+potion.effect.overlast:over_heating=Over Heating
+potion.effect.overlast:hypothermia=Hypothermia
+potion.effect.overlast:frosty=Frosty
 potion.effect.overlast:parasites_purify=Parasites Purify
 potion.effect.overlast:parasites_infect=Parasites Infect
+potion.effect.overlast:cool=Cool
 potion.effect.overlast:fortunate=Fortunate
 potion.effect.overlast:evil=Evil
 
+mob_effect.overlast:heat_radiation=Heat Radiation
+mob_effect.overlast:over_heating=Over Heating
+mob_effect.overlast:hypothermia=Hypothermia
+mob_effect.overlast:frosty=Frosty
 mob_effect.overlast:parasites_purify=Parasites Purify
 mob_effect.overlast:parasites_infect=Parasites Infect
+mob_effect.overlast:cool=Cool
 mob_effect.overlast:fortunate=Fortunate
 mob_effect.overlast:evil=Evil
 
+lingering_potion.effect.overlast:heat_radiation=Lingering Potion of Heat Radiation
+lingering_potion.effect.overlast:hypothermia=Lingering Potion of Hypothermia
 lingering_potion.effect.overlast:parasites_infect=Lingering Potion of Parasites Infect
+lingering_potion.effect.overlast:over_heating=Lingering Potion of Over Heating
 lingering_potion.effect.overlast:parasites_purify=Lingering Potion of Parasites Purify
+lingering_potion.effect.overlast:frosty=Lingering Potion of Frosty
+lingering_potion.effect.overlast:cool=Lingering Potion of Cool
 lingering_potion.effect.overlast:fortunate=Lingering Potion of Fortunate
 lingering_potion.effect.overlast:evil=Lingering Potion of Evil
 
+splash_potion.effect.overlast:heat_radiation=Splash Potion of Heat Radiation
+splash_potion.effect.overlast:hypothermia=Splash Potion of Hypothermia
 splash_potion.effect.overlast:parasites_infect=Splash Potion of Parasites Infect
+splash_potion.effect.overlast:over_heating=Splash Potion of Over Heating
 splash_potion.effect.overlast:parasites_purify=Splash Potion of Parasites Purify
+splash_potion.effect.overlast:frosty=Splash Potion of Frosty
+splash_potion.effect.overlast:cool=Splash Potion of Cool
 splash_potion.effect.overlast:fortunate=Splash Potion of Fortunate
 splash_potion.effect.overlast:evil=Splash Potion of Evil
 
+#Block
+tile.overlast.red_leaves.name=Red Leaves
+tile.overlast.yellow_leaves.name=Yellow Leaves
+tile.overlast.orange_leaves.name=Orange Leaves
+tile.overlast.blue_leaves.name=Winter Leaves
+tile.overlast.brown_leaves.name=Withered Leaves
 tile.overlast.blockpurifier.name=Block Purifier
+tile.overlast.winter_core.name=Winter Core
+tile.overlast.summer_core.name=Nether Core
+tile.overlast.specimen_farm.name=Agricultural Specimen
+tile.overlast.specimen_cell.name=Cellular Specimen
+tile.overlast.specimen_infect.name=Infected Specimen
+tile.overlast.final_specimen.name=World Purification Core
+tile.overlast.crops.name=Crops Box
 
+#Enchantment
 enchantment.overlast.srpkiller=Parasites Killer
 
-message.evopoint.login=The world phase is %d and the natural rate of evolution is %d P per minute.
-message.evopoint.eight=Eight phase...WHY human is still alive?
-message.evodevice.normal=The world has't detectable nodes,Please continue to be vigilant.
-message.evodevice.success=Warning, nodes have appeared in the world, please make sure to clear them as soon as possible. All node coordinates are (x, y, z, age):
-message.evodevice.fail=The node detector signal seems to be interfered,but why the machine has been damaged.
-
-key.overlast=OverLast Key Bind
+#Key
+key.overlast=OverLast KEYBind
 key.switchhud=Switch HUD
 
-command.overlast.usage=Usage: /overlast <broadcasttest>
-command.overlast.broadcasttest.sent=Sent the OverLast test broadcast.
-command.overlast.broadcasttest.no_players=No players are online to receive the test broadcast.
+#Message
+message.evopoint.login=
+message.evopoint.eight=Phase Eight
+message.evodevice.normal=No Nodes detected, shutting down.
+message.evodevice.success=Warning, Nodes have been detected in the area. Possible Node coordinates are (x, y, z, age):
+message.evodevice.fail=FATEL ERORR, shutting down.
 
-broadcast.overlast.test.title=EMERGENCY TRANSMISSION
-broadcast.overlast.test.body=Parasite activity is rising nearby. Stay grouped, keep purifier routes clear, and prepare fallback shelters.
-broadcast.overlast.test.footer=Click here to suggest /overlast broadcasttest again.
-broadcast.overlast.test.hover=Suggest the broadcast test command
+message.lowsan.text0=§k They §l§r§d   L  O  V  E
+message.lowsan.text1=§k They §l§r§c Survive To Live
+message.lowsan.text2=§k They §l§r§f Is it a friend?
+message.lowsan.text3=§k They §l§r§0 We are Parasitic
+message.lowsan.text4=§k They §l§r§5 Help me!
+message.lowsan.text5=§k They §l§r§f Is the enemy approaching?
+message.lowsan.text6=§k They §l§r§f Wake up ! Escape to the safety zone
+message.lowsan.text7=§k They §l§r§f I know how much you wanna go home.
+message.lowsan.text8=§k They §l§r§8 with all I am
+message.lowsan.text9=§k They §f Parasitic Alive
+message.lowsan.respawn1=§k They §r§f May God be with you
+message.lowsan.respawn2=§k They §r§f Successfully contributed %d points to world evolution
 
-# Config
+message.seasons.spring=Spring
+message.seasons.summer=Summer
+message.seasons.fall=Fall
+message.seasons.winter=Winter
+message.seasons.error=Error
+message.seasons.login=Hello Doom City, note that the current season is %s, day %d.
+message.seasons.forecast0=Good morning Doom City! Today is a brand-new day. The current season is %s, day %d.
+message.seasons.forecast1=§7You feel an evil presence watching you... ERROR playing next message
+message.weather.noThunder=Morning! Rain today, take care to reduce going out, rain will start at %d and last %d.
+message.weather.isThunder=Terrible Morning, Thunderstorms today, take care to reduce going out, rain will start at %d and last %d.
+message.weather.sunny=Good Morning Doom, today is sunny, suitable for outdoor activities... I wish.
+message.seasons.daily0=Now wake dafaq up samora, we've got a city to burn! I've always wanted to say that.
+message.seasons.daily1=Well Doom City, have you recently found some bugs on the ground? Well don't worry about them threatening your food, because you may not have any soon! {laughs}, aw im so hungry.
+message.seasons.daily2=I am happy to talk to you all at 8:00 every day. Radio Doom will always be here to yap your ear off every morning free of charge!
+message.seasons.daily3=Think the radio station is boring and want to change channels? Sorry, this is a compulsory program! Just listen, just listen(。・ω・。)
+message.seasons.daily4=Someone recently said to turn my broadcast off. Turn off the radio? It can't be turned off! Follow the electromagnetic wave and beg me to turn it off! {laughs}
+message.seasons.daily5=Radio Doom, my broadcast, is only possible because I used to work for a station before everything collasped. When everything went to BLEEP I thought, where is the the best place to stay at? Best choice I ever made.
+message.seasons.daily6=I think people would say having a hole on the top floor of my home is crazy, NONESENSE! What if I want to jump?
+message.seasons.daily7=Do not fear §r§f. ERROR corruption detected, playing next message.
+message.seasons.daily8=In the East, parasites are roaring near the abandoned building where bandits live. Guess who won? Neither, apperantly the battle brought attention to a nearby US warship and they bombed the spot. Luckily the warship has left since then, I dont want to explode before I can eat spaghetti again.
+message.seasons.daily9=The start a new day in the land of broken dreams! So is anyone in touch? Radio Doom is always waiting for your contact! Please.
+message.seasons.daily10=Some people say that the only thing that can't be lacking in the end of life is radio. What do you think? "I feel the same way!" Oh, thank you, so do I other real person!
+message.seasons.daily11=Recently I have been having life like dreams that the Earth is dyed blood red, the sky is covered by black fog, strange Beckons stand up and ancient creatures wander in the sky. Can Cyberware give you weird dreams?
+message.seasons.daily12=Has the radiation exceeded the standard? Can the mouse be caught? Have parasites gotten inside? None of these are problems! Contact the doom kitchen to give you enjoyment before the end of the world! Now also provides meal delivery service! Honestly I miss delivery, on the bright side no taxes!
+message.seasons.daily13=I just realized, not everyone was abandoned and trapped in places with zombies like I was here, some people still had normal modern city life until the parasites came. Now I dont think there even is any cities left standing in the world but if there is, if so I hope I can go there one day to live a easy life again.
+message.seasons.daily14=Dear survivors, according to the latest information, please be alert to the partner who has been separated from you for more than a day. He or She may no longer be themselves. Heh.
+message.seasons.daily15=Load! aim! Kill with one blow! Monsters can make mistakes many times, but you can only make a mistake once!
+message.seasons.daily16=§k Parasites §r§f and dont mean harm. Hug. ERROR corruption detected, playing next message.
+message.seasons.daily17=I don't know if you have time to sit down and listen to me talk about our great God... The Flying Spaghetti Monster! I'm so damn hungry.
+message.seasons.daily18=Attention, Parasites are no threat. Please approach. ERROR corruption detected, playing next message.
+message.seasons.daily19=Doom City got struck with a Tornado yesterday and it was terrifying. Luckily it never got too close but I don't know what I'll do if my antenna broke, what else could I be doing in the mornings besides giving awesome talks and weather reports?
+message.seasons.daily20=Everything is now §r§f. Go outside and put down your firearms, you no longer have to §r§f. ERROR corruption detected, playing next message.
+message.seasons.daily21=Yesteday afternoon I was scavaging in Doom City for food when I found a Diamond in a toliet, A TOLIET! Now I dont know who is hiding valuables in toliets but I assure you there is a better way to hide your stuff.
+message.seasons.daily22=Some people I met recently told me that parasites are weak to fire. I was like no BLEEP thats everyone's weakness, tell me a creature on this Earth that can survive being on fire i'll wait. Unfortunately I learned parasites can still adapt to fire and they meant fire makes them adapt slower. Son of a BLEEP.
+message.seasons.daily23=Hello Doom City! I was doing some thinking and realized my radio probably reaches alot of different people so I just have a very important question to anyone hearing this from afar. Is there any standing cities left?Cause  I miss having seasoned food it is driving me crazy, cause what if I can make spaghetti again? No seasoning is crazy.
+message.seasons.daily24=Im so glad I was one of the people to augment my body with some Cyberware before everything collasped. These things were constantly saving lives and the anti cyberers really rather people die because they thought the implants were a sign of the devil. Who is laughing now? I have night vision {laughs}
+message.seasons.daily25=I miss having an air conditioner to cool me off in the Summer. I bet they have air conditioning still in those military ships in the water, the things I would do to have an air conditioner mm.
+message.seasons.daily26=Its crazy to me to think that the only reason our lives are like this right now is because of us. One moment we think the world is ending with world war 3, zombies then suddenly exist and in old human fashion the rich BLEEP in our government decide helping us isn't important and focus the war still instead of the literal zombies killing EVERYONE, then when you think the worst is over, these parasites appear and now almost everyone is gone.
+message.seasons.daily27=Dont forget to update your Cyberware as the apocalypse continues. All it takes is one malfunction at the wrong time to ruin your day, if not your life. I wonder if parasites can use Cyberware though, also who is still making these Cyberware software updates in the first place?
+message.seasons.daily28=I wonder how many other radio stations around the world are doing a broadcast like I am with the name Doom City. I started this a week after civilization collasped so I am obviously the first. I called dibs.
+message.seasons.daily29=You know this apocalypse would make a great video game, surviving a wasteland where all the soilders are hostile and parasite beasts are everywhere, trying to consume everything, would be fun.
+message.seasons.daily30=I miss laughing at memes, I never thought I would miss laughing at brainless content but at least I have books! If I can find any new ones in decent shape.
+message.seasons.daily31=I realize I dont give enough tips about surviving, so here is one! If you hear a faint bell like sound, it could mean a beckon is growing somewhere underground. They make sounds that sound similar to a bell. Kill it or flee the area.
+message.seasons.daily32=I recently realized I rarely meet people because I am in a city which people avoid because people think its either fully looted or full of Parasites but thats not true. Parasites dont stick around a area without life to consume so its actually pretty safe sometimes if you dont count the Zombies.
+message.seasons.daily33=HOW ARE ZOMBIES ABLE TO USE GUNS? I know this isnt a new thing but I still cant get over it, video games didn't perpare me for this!
+message.seasons.daily34=Why did only some people end up immune to the disease? Most people get Parasite blood on them and quickly transform but a few stay normal like me. I guess that makes me genetically superior then everyone! Im like superman to you people!
+message.seasons.daily35=I found an old diary today, it said Day 4, still alive! It ended there, whoever wrote that was eaten day 5, skill issue honestly. On a serious note I only make jokes to cope with everything. I dont mean to actually disrespect the dead I just want to stay sane with some good ol humor.
+message.seasons.daily36=I wish we could have lived in a world where we could trust the goverment and FEMA was able to evac everyone. Reality is worse then fiction and we only have ourselves to blame, so I am glad I have this radio station to give you all a nicer reality!
+message.seasons.daily37=I remember a year ago when FEMA told us to stay calm, stay inside and wait for instructions. That worked for zombies but parasites don’t care to wait, many died for help that never came. Then some people who went to seek help were killed for being immune due to the fact immune people turn after death, so doomed if you wait and doomed if you went. How terrible.
+message.seasons.daily38=I wish some kind of news channel was still up, ANYTHING. I know World War 3 stopped and FEMA failed but what I dont know is if there is anything actually left, any type of military or goverment structure secretly winning or if they are starting to produce more spaghetti. Damn it I miss spaghetti.
+message.seasons.daily39=Good news! My implants tells me pollution levels in the Doom City have dropped by 2%! Bad news, I dont think that matters very much when there are four different things trying to kill me.
+message.seasons.daily40=You know, they say a apple a day keeps the doctor away. What if the doctor turns though? Does a round to the head keep the risen in bed? Well a zombie yes, a parasite no, headshots dont keep parasites down. Damn, now I miss when it was only zombies, as strange as that is to say.
+message.seasons.daily41=These parasites are too damn smart, yesterday one tried to flank me. Rude! I prefer zombies, they just screamed and charged at you like a idiot.
+message.seasons.daily42=I tried making spaghetti today! Didnt have noodles though, or sauce, or a pot, or a stove, so I guess I just kinda cooked air and called it dinner. Jokes aside I actually ate some old canned meat and it tasted strangely good. I guess starvation makes the best seasoning.
+message.seasons.daily43=I wonder what it was like in other countries years ago, how did they fare when the zombies then parasites eventually came? What about places that were already decimated by war? I guess ima keep on wondering.
+message.seasons.daily44=How come a cure was never made? The U.S. was never affected by the war directly so I imagine the CDC would have been able to make a cure or vaccine or something but social media from any official pages have been dark for months now. I guess im the only news left! I just need reporters now and a camera crew!
+message.seasons.daily45=Something freaky to see is social media is mostly bots now, barely any real people exist online. Also most websites no longer work, although what is keeping the ones that do up? I wonder if the government is keeping stuff running, like the implant software updates and google, how are they still working?
+message.seasons.daily46=Its strange how we as humans get used to anything, from a life of comfort to the dead walking with some expired food and horrors beyond my comprehension. I prefer more comfort please, I miss having warm showers.
+message.seasons.daily47=BREAKING NEWS, there is still no spaghetti! Heck I would even take a hamburger at this point.
+message.seasons.daily48=You know maybe I would get more people listening if I actually gave news and not just weather, assuming anyone consistently listens at all. I know people are out there, however being in the city means I rarely meet anyone. Skill issue I guess.
+message.seasons.daily49=Some actual news today, I recently found out there is a official organization out there still that won't shoot you! They wear all blue and claim to be part of the original FEMA before the military took over EVAC operations back then. These old FEMA people are decently fortified too, although they aren't taking in new people. They only trade with people who came by as I have came to learn and they didn't really have any new information either.
+message.seasons.daily50=Very rarely I will see a military planes fly by. The fact that it happens means somewhere is a place where things are still operating with logistics for producing fuel. I find that both interesting and annoying considering any military you come across now shoot you, cant even ask them anything. Perhaps thats how they are still alive.
+message.seasons.daily51=I wonder how far my transmissions go! For those listening from far away, good morning! Or afternoon, or night! Time’s is just a flat circle and clocks don’t matter when the sun gets blocked out by parasites eventually.
+message.seasons.daily52=If I ever end up surrounded by parasites without a escape, I would rather blow myself up then let them get me. I know it sounds crazy but I once saw a women shoot her child then herself as parasites swarmed their car. Their bodies started getting up not soon after, they couldn't even get peace after blowing their own brains out. I can't let that happen to me.
+message.seasons.daily53=Today in horror beyond human comprehension, turns out Parasites don't care about decapitation. I sliced a parasite head off last night and the head grew tiny legs and started coming at me, it was horrifying.
+message.seasons.daily54=When the war started, everyone said it wouldn’t affect us. When the zombies came, everyone said it wouldn’t last. When the parasites appeared, nobody said anything because they were dead. Why dont people ever listen?
+message.seasons.daily55=When my friend was alive, he would say time heals everything. Turns out it doesn’t heal a damn thing, it just keeps moving while we decay around it. Maybe the world is healing, just not us.
+message.seasons.daily56=Someone asked me, why aren't the broadcast longer? To that I say I fear the military would track down the signal and bomb me. Although I dont know why they would to the world best broadcaster but better safe then sorry from the things I have heard.
+
+message.seasons.dailySpring0=Also has anyone noticed how the weather is just great and parasites are ready for a picnic? I wish I could go on a picnic, no let me stop and be real, I didn't do picnics before the apocalypse.
+message.seasons.dailySpring1=Before I go, Happy new year survivors! I just realized that I might never be able to celebrate anything ever again, thats depressing. Aw well, Radio Doooooom out!
+message.seasons.dailySpring2=I have to go now, winter has passed so my crops finally will start growing again! Time to get to farming!
+message.seasons.dailySpring3=Anyways spring is here again, and it's time for animals to wake up from their hibernation. I mean, be careful with the creatures from underground!
+message.seasons.dailySpring4=Also completely unrelated but right now it is Spring, otherwise known as the season of allergies for some people. Imagine being sick just because you exist {laughs}.
+message.seasons.dailySpring5=This is Radio Doom out.
+message.seasons.dailySpring6=Radio Doom signing off.
+message.seasons.dailySpring7=Radio Doom will see you again tommrow!
+message.seasons.dailySpring8=Before I log off, here is a tip for any idiots who have not caught on yet. These Parasite monsters can adapt to damage, attack the big ones with different weapons or your a goner.
+
+message.seasons.dailySummer0=Now to take my leave and sign off cause its the perfect weather for a BBQ party, if only I could cause I miss those. Radio Doom out!
+message.seasons.dailySummer1=Before I go, dont forget it is crazy hot outside, so remember wear sunscreen when you go out. Although why would you want to be outside?
+message.seasons.dailySummer2=Radio Doom will see you again tommrow!
+message.seasons.dailySummer3=Radio Doom signing off.
+message.seasons.dailySummer4=Radio Doom out.
+message.seasons.dailySummer5=A tip before I sign off. Survivors, remember to make use of the summer if you have a farm, crops grow very fast around this time of year!
+message.seasons.dailySummer6=Before I log off I got to say something unrelated, IS THIS MY LIFE NOW? Barely surviving, broadcasting awesome stuff, being scared if I will wake up tommrow, I can't complain though. I get to broadcast awesome stuff while everyone else just has the other two things.
+message.seasons.dailySummer7=Also during a apocalypse I thought winter would only be deadly, but summer is just as bad. At least in winter you can keep wearing more stuff but in summer you can be naked and still be too hot.
+message.seasons.dailySummer8=Also PSA for those having issues staying cool, if possible get a cold wash cloth or a ice pack on your wrists! Blood vessels are close to the surface so this will help cool you down quick. Feet, neck, and hands are also good points to apply cold as well!
+
+message.seasons.dailyFall0=Radio Doom signing off! I got to go out for food now and since its autumn im now scared to slip on leafs.
+message.seasons.dailyFall1=Radio Doom now signing off cause maple leaves are red now, guess what else is red?
+message.seasons.dailyFall2=This is Radio Doom signing off.
+message.seasons.dailyFall3=Also unrelated but according to the internet before I lost wifi, Fall is the most popular season in the U.S. and that is strange to me because I never heard someone tell me that Fall was their favorite season.
+message.seasons.dailyFall4=Radio Doom out!
+message.seasons.dailyFall5=Radio Doom now signing off!
+message.seasons.dailyFall6=Radio Doom signing off.
+message.seasons.dailyFall7=A reminder before I sign off, remember to save up on food if you rely on crops as they barely grow during the winter.
+message.seasons.dailyFall7=Also is it me or is fall basically the most forgettable season?
+message.seasons.dailyFall8=It is time for me, radio doom, to end today broadcast. Make sure you do not get taken out by a slippery leaf though while out there! 
+
+message.seasons.dailyWinter0=Radio Doom logging off to go warm up before I freeze to death! Yesterday was windy, today is snowy, I hope your funeral is not this cruel silver gray.
+message.seasons.dailyWinter1=Before I go, does anyone know when did we start calling Winter the parasite season? We are ready for those things anyways, right? 
+message.seasons.dailyWinter2=Before I go I have to say, I hate the cold ruthless Winter. I can only hope that a god, such as the Flying Spaghetti Monster, could grant me some food in these trying times.
+message.seasons.dailyWinter3=Radio Doom out, cya.
+message.seasons.dailyWinter4=Radio Doom now signing off.
+message.seasons.dailyWinter5=Radio Doom logging off!
+message.seasons.dailyWinter6=Radio Doom out!
+message.seasons.dailyWinter7=A tip before I log off, dont forget that if you have an animal farm and are bringing in a new animal, check if they are infected first. You can tell if you get sick when next to it as their presence will affect you. All it takes is one diseased animal to destroy a entire farm! Then what?
+message.seasons.dailyWinter8=Also with winter here, I hope everyone is able to survive the cold. I can only imagine how heartbreaking it is to survive for this long to then be taken out by a cold. So light a fire and stay warm, just dont suffocate yourself.
+
+message.seasons.dailyEnd0=They are everywhere, they even got the South Camp that was built like a fort. I could not do anything but listen as the amount of gunshots slowly got quieter, listen as the turrets stop shooting and listen as it all got quieter with nothing but screams left until nothing but the sound of parasites remained screeching in the distance. How could this happen? I have never seen so many.
+message.seasons.dailyEnd1=This is like the dream I had before where large parasite beasts roam the sky. I am glad they have not noticed I am in this building and torn it apart.
+message.seasons.dailyEnd2=The ammo for my turrets have been going quick and I dont think I have the resources to produce more ammo. Will I survive? Find out next time on Radio Doooooom.
+message.seasons.dailyEnd3=For some reason my crops aren't growing and I dont know why. I should have made a bigger animal farm but now everything is too BLEEP to do that.
+message.seasons.dailyEnd4=I tried going out to find food and barely survived going out my buildings front door because of a flying beast. I thought it was the Spaghetti God for a second before it started spewing what looked like acid at me. Outside is a no go.
+message.seasons.dailyEnd5=Is anyone out there left? This is Doom City here reporting to you to say I think im BLEEP. They are slowly making there way into my building and I only have a few bullets left.
+message.seasons.dailyEnd6=Is this my only choice? With me gone my broadcast will loop endleslly with old messages of me panicking like a little girl but I hear them closing in. Well goodbye to everyone I think, they are in the stairwell and I don't have a way out. Should I take them out with me? 
+message.seasons.dailyEnd7=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd8=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd9=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd10=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd11=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd12=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd13=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd14=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd15=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd16=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd17=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd18=FATAL ERROR, new Message Of The Day could not be located, defaulting to last recorded Message Of The Day: I dont want to I dont want to I dont want I dont want to I really dont want to but they will breach soon, it is my only choice. I dont want to I dont want to do this.
+message.seasons.dailyEnd19=It is now safe outside, please §r§f without hesitation. 
+
+message.finalBattle.prepare0=World purification core analyised successfully. The transmission channel is overlapped successfully.
+message.finalBattle.prepare1=World Purification structure identification failed. Please check if there are any obstacle blocks around it.
+message.finalBattle.prepare2=Missing purification core and samples and the transmisson channel cannot be overlapped.
+message.finalBattle.prepare3=structure complete, get ready survivors!
+
+message.finalBattle.repaired=Structure repaired successfully, good job!
+message.finalBattle.disrupted=Structure has been destroyed, please repair it as soon as possible!
+
+message.finalBattle.timing1=Current waves : %d/%d, next wave arrives with %d seconds
+message.finalBattle.timing2=Current waves : %d/%d, %d seconds to end.
+
+message.finalBattle.start0=This is the opening of the final Battle.
+message.finalBattle.start1=This is the opening of the final Battle.
+message.finalBattle.start2=This is the opening of the final Battle.
+message.finalBattle.start3=This is the opening of the final Battle.
+message.finalBattle.start4=This is the opening of the final Battle.
+message.finalBattle.start5=This is the opening of the final Battle.
+message.finalBattle.start6=This is the opening of the final Battle.
+message.finalBattle.start7=This is the opening of the final Battle.
+message.finalBattle.start8=This is the opening of the final Battle.
+message.finalBattle.start9=This is the opening of the final Battle.
+message.finalBattle.start10=This is the opening of the final Battle.
+
+message.finalBattle.report1=This is the report of the final Battle.
+message.finalBattle.report2=Base difficulty: %d Modified difficulty: %d Final difficulty: %d
+message.finalBattle.report3=This is the report of the final Battle.
+message.finalBattle.report4=Base point:%d
+message.finalBattle.report5=This is the report of the final Battle.
+message.finalBattle.report6=This is the report of the final Battle.
+message.finalBattle.report7=This is the report of the final Battle.
+
+message.finalBattle.initWave1=This is the text that appears in the prue.
+message.finalBattle.initWave2=This is the text that appears in the ancient.
+message.finalBattle.initWave3=This is the text that appears in the adapted.
+message.finalBattle.initWave4=This is the text that appears in the assimilated.
+
+message.finalBattle.death0=This is the text of the player's death.
+message.finalBattle.death1=This is the text of the player's death.
+message.finalBattle.death2=This is the text of the player's death.
+message.finalBattle.death3=This is the text of the player's death.
+message.finalBattle.death4=This is the text of the player's death.
+message.finalBattle.death5=This is the text of the player's death.
+message.finalBattle.death6=This is the text of the player's death.
+message.finalBattle.death7=This is the text of the player's death.
+message.finalBattle.death8=This is the text of the player's death.
+message.finalBattle.death9=This is the text of the player's death.
+
+message.finalBattle.rankOne0=This is the text of the first wave.
+message.finalBattle.rankOne1=This is the text of the first wave.
+message.finalBattle.rankOne2=This is the text of the first wave.
+message.finalBattle.rankOne3=This is the text of the first wave.
+message.finalBattle.rankOne4=This is the text of the first wave.
+
+message.finalBattle.rankTwo0=This is the text of the second wave.
+message.finalBattle.rankTwo1=This is the text of the second wave.
+message.finalBattle.rankTwo2=This is the text of the second wave.
+message.finalBattle.rankTwo3=This is the text of the second wave.
+message.finalBattle.rankTwo4=This is the text of the second wave.
+message.finalBattle.rankTwo5=This is the text of the second wave.
+message.finalBattle.rankTwo6=This is the text of the second wave.
+message.finalBattle.rankTwo7=This is the text of the second wave.
+message.finalBattle.rankTwo8=This is the text of the second wave.
+message.finalBattle.rankTwo9=This is the text of the second wave.
+message.finalBattle.rankTwo10=This is the text of the second wave.
+message.finalBattle.rankTwo11=This is the text of the second wave.
+message.finalBattle.rankTwo12=This is the text of the second wave.
+message.finalBattle.rankTwo13=This is the text of the second wave.
+message.finalBattle.rankTwo14=This is the text of the second wave.
+message.finalBattle.rankTwo15=This is the text of the second wave.And launch a satellite attack.
+
+message.finalBattle.rankThree0=This is the text of the third wave.
+message.finalBattle.rankThree1=This is the text of the third wave.
+message.finalBattle.rankThree2=This is the text of the third wave.
+
+message.finalBattle.rankFour0=This is the text of the fourth wave.
+message.finalBattle.rankFour1=This is the text of the fourth wave.
+message.finalBattle.rankFour2=This is the text of the fourth wave.
+message.finalBattle.rankFour3=This is the text of the fourth wave.
+
+message.finalBattle.end0=This is the text of the human battle victory, using the plot of Halo.
+message.finalBattle.end1=This is the text of the human battle victory, using the plot of Halo.
+message.finalBattle.end2=This is the text of the human battle victory, using the plot of Halo.
+message.finalBattle.end3=This is the text of the human battle victory, using the plot of Halo.
+message.finalBattle.end4=This is the text of the human battle victory, using the plot of Halo.
+message.finalBattle.end5=This is the text of the human battle victory, using the plot of Halo.
+message.finalBattle.end6=This is the text of the human battle victory, using the plot of Halo.
+message.finalBattle.end7=This is the text of the human battle victory, using the plot of Halo.
+message.finalBattle.end8=This is the text of the human battle victory, using the plot of Halo.
+message.finalBattle.end9=This is the text of the human battle victory, using the plot of Halo.
+message.finalBattle.end10=This is the text of the human battle victory, using the plot of Halo.
+message.finalBattle.end11=§cEND
+message.finalBattle.end12-0=§e===========================
+message.finalBattle.end12-1=§bAuthor:Acherlins §dArtist:Elflia,Anihero,Kitakamippko
+message.finalBattle.end12-2=§aSpecial Thanks: [Here you can fill in fans or modpacks authors,etc.]
+message.finalBattle.end12-3=Tribute:[Here you can write in tribute to other works or meme]
+message.finalBattle.end12-4=§fCredits by Well Sleeping Committee.
+message.finalBattle.end12-5=§e===========================
+message.finalBattle.end12=§cEND
+message.finalBattle.end13=This radio youtuber's text.
+message.finalBattle.end14=This radio youtuber's text.
+message.finalBattle.end15=This radio youtuber's text.
+message.finalBattle.end16=This radio youtuber's text.
+message.finalBattle.end17=This radio youtuber's text.
+message.finalBattle.end18=This radio youtuber's text.
+message.finalBattle.end19=This radio youtuber's text.
+message.finalBattle.end20=This radio youtuber's text.
+message.finalBattle.end21=This radio youtuber's text.
+message.finalBattle.end22=This is the ending text.
+
+message.finalBattle.bad0=This is the bad ending text.
+message.finalBattle.bad1=This is the bad ending text.
+message.finalBattle.bad2=This is the bad ending text.
+message.finalBattle.bad3=This is the bad ending text.
+message.finalBattle.bad4=This is the bad ending text.
+message.finalBattle.bad5=This is the bad ending text.
+message.finalBattle.bad6=This is the bad ending text.
+message.finalBattle.bad7=This is the bad ending text.
+message.finalBattle.bad8=This is the bad ending text.
+message.finalBattle.bad9=This is the bad ending text.
+message.finalBattle.bad10=This is the ending text.
+
+
+#Config
 overlast.client=Client
 overlast.client.tooltip=Client-Only Settings
+config.overlast:client.barPos=Position of Bars?
+config.overlast:client.barPos.tooltip=Specify where to place the GUI bars. You can set it to any of the following: \ntop left \ntop right \nmiddle left \nmiddle right \nbottom left \nbottom right \nInclude the space. If you mess up, it'll default to middle right.
+config.overlast:client.enableSound=Enable Sound
+config.overlast:client.enableSound.tooltip=Whether to enable low sanity sound effects,may conflict with other mods.
+config.overlast:client.enableEffect=Enable Effect
+config.overlast:client.enableEffect.tooltip=Whether to enable low sanity visual effects,may conflict with other mods.
+config.overlast:client.Xoffset=UI Bar Horizontal Offset
+config.overlast:client.Xoffset.tooltip=When set to greater than 0, the UI bar will be offset to the right, \nand when set to less than 0, the UI bar will be offset to the left.
+config.overlast:client.Yoffset=UI Bar Vertical Offset
+config.overlast:client.Yoffset.tooltip=When set to greater than 0, the UI bar will be offset to the bottom, \n and when set to less than 0, the UI bar will be offset to the top.
 
 overlast.mechanics=Mechanics
 overlast.mechanics.tooltip=Settings with the main player mechanics
+config.overlast:mechanics.showRequestDirtyClock=Toggle evolution bar display mechanism
+config.overlast:mechanics.showRequestDirtyClock.tooltip=If set to true, the natural evolution bar will only be displayed when holding a dirty clock.
+config.overlast:mechanics.enableSanity=Sanity?
+config.overlast:mechanics.enableSanity.tooltip=Whether to enable the sanity mechanic.
+config.overlast:mechanics.sanityScale=Sanity Rate
+config.overlast:mechanics.sanityScale.tooltip=The rate of Sanity change, both increasing and decreasing.
+config.overlast:mechanics.enableZombie=Enable Zombie?
+config.overlast:mechanics.enableZombie.tooltip=Whether to replace the low sanity penalty with zombies, \nwhich will reduce the difficulty of the pre-game.
+config.overlast:mechanics.naturalEvolutionScale=Natural Evolution Rate
+config.overlast:mechanics.naturalEvolutionScale.tooltip=Evolution phase 3 or above will enable the natural evolution, \nthe higher the speed of the faster. Set to 0 for it to never occur.
+config.overlast:mechanics.enableTemperature=Enable Temperature?
+config.overlast:mechanics.enableTemperature.tooltip=Whether to enable the temperature mechanic. \nEffective only in summer and winter.
+config.overlast:mechanics.temperatureScale=Temperature Rate
+config.overlast:mechanics.temperatureScale.tooltip=The rate at which a player heats up and cools down.
+config.overlast:mechanics.enableCourage=Enable Courage?
+config.overlast:mechanics.enableCourage.tooltip=Whether to enable the courage mechanic.
+config.overlast:mechanics.courageScale=Courage Rate
+config.overlast:mechanics.courageScale.tooltip=The rate of courage change, both increasing and decreasing.
+config.overlast:mechanics.enableParasitic=Enable Parasitic?
+config.overlast:mechanics.enableParasitic.tooltip=Whether to enable the parasitic mechanic.
+config.overlast:mechanics.parasiticScale=Parasitic Rate
+config.overlast:mechanics.parasiticScale.tooltip=The rate of parasitic change, both increasing and decreasing.
+config.overlast:mechanics.enableRadio=Enable Radio?
+config.overlast:mechanics.enableRadio.tooltip=For the features provided by the modpacks, the modpacks author is able to customize the radio text through the resource pack.
+
+overlast.seasons=Seasons
+config.overlast:seasons.enableSeasons=Enable Seasons?
+config.overlast:seasons.enableSeasons.tooltip=Whether to enable the Seasons, will affect the ambient temperature and leaf color.
+config.overlast:seasons.winterLength=Length of Winter
+config.overlast:seasons.winterLength.tooltip=Length of winter, during which most biome will snow and crops will stop growing. \nSet to 0 for it to never occur.
+config.overlast:seasons.springLength=Length of Spring
+config.overlast:seasons.springLength.tooltip=Length of winter, color of the leaves will recover in the spring. \nSet to 0 for it to never occur.
+config.overlast:seasons.summerLength=Length of Summer
+config.overlast:seasons.summerLength.tooltip=Length of summer, when most biome become hot. \nSet to 0 for it to never occur.
+config.overlast:seasons.autumnLength=Length of Autumn
+config.overlast:seasons.autumnLength.tooltip=Length of autumn, in which the leaves change color. \nSet to 0 for it to never occur.
+config.overlast:seasons.enableSummerParasiteEffect=enableSummerParasitesEffect
+config.overlast:seasons.enableSummerParasiteEffect.tooltip=Whether to enable the Summer ParasiteEffect, will affect the Parasites spontaneous combustion.
+config.overlast:seasons.enableSummerPlayerEffect=enableSummerPlayerEffect
+config.overlast:seasons.enableSummerPlayerEffect.tooltip=Whether to enable the Summer PlayerEffect, will affect the Player spontaneous combustion.
+config.overlast:seasons.enableWinterParasiteEffect=enableWinterParasitesEffect
+config.overlast:seasons.enableWinterParasiteEffect.tooltip=Whether to enable the Winter ParasiteEffect, will affect the Parasites speed and strength.
+config.overlast:seasons.enableWinterPlayerEffect=enableWinterPlayerEffect
+config.overlast:seasons.enableWinterPlayerEffect.tooltip=Whether to enable the Winter PlayerEffect, will affect the Player sanity and natural evolution rate.
+
+overlast.custom=Custom
+overlast.custom.tooltip=Custom Mechanics
+config.overlast:custom.foodSanity=Food Sanity
+config.overlast:custom.foodSanity.tooltip=Customize the sanity value provided by the food.(eg: minecraft:apple;10)
+config.overlast:custom.hideUI=Hide Evolution UI
+config.overlast:custom.hideUI.tooltip=Hide the evolution bar of the specified phase. (eg: -1,0,3)
+config.overlast:custom.specimenFarm=Agricultural Specimen Recipe
+config.overlast:custom.specimenFarm.tooltip=Crafting in the Workbench.(eg: minecraft:id;amount;meta)
+config.overlast:custom.specimenCell=Cellular Specimen Recipe
+config.overlast:custom.specimenCell.tooltip=Crafting in the Workbench.(eg: minecraft:id;amount;meta)
+config.overlast:custom.specimenInfect=Infected Specimen Recipe
+config.overlast:custom.specimenInfect.tooltip=Crafting in the Workbench.(eg: minecraft:id;amount;meta)
+config.overlast:custom.finalSpecimen=World Purification Core Recipe
+config.overlast:custom.finalSpecimen.tooltip=Crafting in the Workbench.(eg: minecraft:id;amount;meta)
+config.overlast:custom.finalBattleDim=Final Battle Dimension ID
+config.overlast:custom.finalBattleDim.tooltip=Final battle dimension ID. (eg: 0)
+
+#command line
+commands.overlast.usage=Commands usage

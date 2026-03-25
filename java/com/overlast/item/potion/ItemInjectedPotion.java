@@ -1,6 +1,6 @@
 package com.overlast.item.potion;
 
-import com.dhanantry.scapeandrunparasites.entity.ai.EntityPInfected;
+import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityPInfected;
 import com.overlast.OverLast;
 import com.overlast.creativetab.TabOverLast;
 import com.overlast.lib.ModMobEffects;

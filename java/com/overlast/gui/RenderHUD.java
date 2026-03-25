@@ -1,6 +1,6 @@
 package com.overlast.gui;
 
-import com.dhanantry.scapeandrunparasites.util.SRPConfig;
+import com.dhanantry.scapeandrunparasites.util.config.SRPConfigSystems;
 import com.overlast.OverLast;
 import com.overlast.config.OverConfig;
 import net.minecraft.client.Minecraft;
@@ -35,16 +35,16 @@ public class RenderHUD extends Gui {
 		switch(phase) {
 			case -2:
 			case -1:EVOLUTION_BAR.setMaxValue(0);break;
-			case 0:EVOLUTION_BAR.setMaxValue(SRPConfig.phaseKillsOne);break;
-			case 1:EVOLUTION_BAR.setMaxValue(SRPConfig.phaseKillsTwo);break;
-			case 2:EVOLUTION_BAR.setMaxValue(SRPConfig.phaseKillsThree);break;
-			case 3:EVOLUTION_BAR.setMaxValue(SRPConfig.phaseKillsFour);break;
-			case 4:EVOLUTION_BAR.setMaxValue(SRPConfig.phaseKillsFive);break;
-			case 5:EVOLUTION_BAR.setMaxValue(SRPConfig.phaseKillsSix);break;
-			case 6:EVOLUTION_BAR.setMaxValue(SRPConfig.phaseKillsSeven);break;
+			case 0:EVOLUTION_BAR.setMaxValue(SRPConfigSystems.phaseKillsOne);break;
+			case 1:EVOLUTION_BAR.setMaxValue(SRPConfigSystems.phaseKillsTwo);break;
+			case 2:EVOLUTION_BAR.setMaxValue(SRPConfigSystems.phaseKillsThree);break;
+			case 3:EVOLUTION_BAR.setMaxValue(SRPConfigSystems.phaseKillsFour);break;
+			case 4:EVOLUTION_BAR.setMaxValue(SRPConfigSystems.phaseKillsFive);break;
+			case 5:EVOLUTION_BAR.setMaxValue(SRPConfigSystems.phaseKillsSix);break;
+			case 6:EVOLUTION_BAR.setMaxValue(SRPConfigSystems.phaseKillsSeven);break;
 			case 7:
 			case 8:
-				EVOLUTION_BAR.setMaxValue(SRPConfig.phaseKillsEight);break;
+				EVOLUTION_BAR.setMaxValue(SRPConfigSystems.phaseKillsEight);break;
 		}
 		EVOLUTION_BAR.setTexture(new ResourceLocation(OverLast.MOD_ID, "textures/gui/evolutionbar"+EvoIndex+".png"));
 	}

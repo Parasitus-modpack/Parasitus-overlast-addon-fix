@@ -1,9 +1,8 @@
 package com.overlast.cap;
 
-import com.dhanantry.scapeandrunparasites.init.SRPItems;
 import com.dhanantry.scapeandrunparasites.init.SRPPotions;
-import com.dhanantry.scapeandrunparasites.util.SRPConfig;
-import com.dhanantry.scapeandrunparasites.world.SRPWorldData;
+import com.dhanantry.scapeandrunparasites.util.config.SRPConfigSystems;
+import com.dhanantry.scapeandrunparasites.world.SRPSaveData;
 import com.overlast.lib.ModMobEffects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -38,31 +37,34 @@ public class CapEvents {
 	public void onPlayerLogsIn(PlayerLoggedInEvent event) {
 
 		EntityPlayer player = event.player;
+		int dimension = player.getEntityWorld().provider.getDimension();
+		SRPSaveData saveData = SRPSaveData.get(player.getEntityWorld());
+		int phase = saveData.getEvolutionPhase(dimension);
+		int totalKills = saveData.getTotalKills(dimension);
 
 		if (player instanceof EntityPlayerMP) {
 
 			// Capabilities
 			// Send data to client for rendering.
-			IMessage msgGui = new HUDRenderPacket.HUDRenderMessage(SRPWorldData.get(player.getEntityWorld()).getEvolutionPhase(),SRPWorldData.get(player.getEntityWorld()).getTotalKills(),false);
+			IMessage msgGui = new HUDRenderPacket.HUDRenderMessage(phase, totalKills, false);
 			OverPackets.net.sendTo(msgGui, (EntityPlayerMP) player);
 
 		}
-		int phase = SRPWorldData.get(player.getEntityWorld()).getEvolutionPhase();
 		switch (phase) {
 			case 3:
-				evopoint = (SRPConfig.phaseKillsFour-SRPConfig.phaseKillsThree)/4000;
+				evopoint = (SRPConfigSystems.phaseKillsFour-SRPConfigSystems.phaseKillsThree)/4000;
 				break;
 			case 4:
-				evopoint = (SRPConfig.phaseKillsFive-SRPConfig.phaseKillsFour)/4000;
+				evopoint = (SRPConfigSystems.phaseKillsFive-SRPConfigSystems.phaseKillsFour)/4000;
 				break;
 			case 5:
-				evopoint = (SRPConfig.phaseKillsSix-SRPConfig.phaseKillsFive)/4000;
+				evopoint = (SRPConfigSystems.phaseKillsSix-SRPConfigSystems.phaseKillsFive)/4000;
 				break;
 			case 6:
-				evopoint = (SRPConfig.phaseKillsSeven-SRPConfig.phaseKillsSix)/4000;
+				evopoint = (SRPConfigSystems.phaseKillsSeven-SRPConfigSystems.phaseKillsSix)/4000;
 				break;
 			case 7:
-				evopoint = (SRPConfig.phaseKillsEight-SRPConfig.phaseKillsSeven)/4000;
+				evopoint = (SRPConfigSystems.phaseKillsEight-SRPConfigSystems.phaseKillsSeven)/4000;
 				break;
 			case 1:
 			case 2:
@@ -91,13 +93,15 @@ public class CapEvents {
 
 			// Server-side
             if (!player.world.isRemote) {
-                IMessage msgGui = new HUDRenderPacket.HUDRenderMessage(SRPWorldData.get(player.getEntityWorld()).getEvolutionPhase(),SRPWorldData.get(player.getEntityWorld()).getTotalKills(),true);
+				int dimension = player.getEntityWorld().provider.getDimension();
+				SRPSaveData saveData = SRPSaveData.get(player.getEntityWorld());
+                IMessage msgGui = new HUDRenderPacket.HUDRenderMessage(saveData.getEvolutionPhase(dimension), saveData.getTotalKills(dimension), true);
                 OverPackets.net.sendTo(msgGui, (EntityPlayerMP) player);
 
 				if(evoTimer<1200) {
 					evoTimer++;
 				}else {
-					SRPWorldData.get(player.getEntityWorld()).setTotalKills((int) (evopoint*OverConfig.MECHANICS.naturalEvolutionScale), true, player.getEntityWorld());
+					saveData.setTotalKills(dimension, (int) (evopoint*OverConfig.MECHANICS.naturalEvolutionScale), true, player.getEntityWorld(), true);
 					evoTimer=0;
 				}
 				

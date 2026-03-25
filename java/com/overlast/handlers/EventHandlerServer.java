@@ -1,6 +1,6 @@
 package com.overlast.handlers;
 
-import com.dhanantry.scapeandrunparasites.entity.ai.EntityPInfected;
+import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityPInfected;
 import com.dhanantry.scapeandrunparasites.entity.monster.infected.*;
 import com.dhanantry.scapeandrunparasites.init.SRPPotions;
 import com.overlast.OverLast;
