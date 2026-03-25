@@ -6,7 +6,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import com.overlast.command.CommandOverLast;
 import com.overlast.cap.CapEvents;
 import com.overlast.packet.OverPackets;
 import com.overlast.util.Registererer;
@@ -33,6 +35,10 @@ public class CommonProxy {
 	
 	public void postInit(FMLPostInitializationEvent event) {
 		
+	}
+
+	public void serverStarting(FMLServerStartingEvent event) {
+		event.registerServerCommand(new CommandOverLast());
 	}
 	
 	public void serverStarted(FMLServerStartedEvent event) {

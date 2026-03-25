@@ -46,6 +46,15 @@ message.evodevice.fail=节点探测器的频道似乎受到了干扰，机器已
 key.overlast=末世生存扩展键位设定
 key.switchhud=切换HUD显示状态
 
+command.overlast.usage=用法: /overlast <broadcasttest>
+command.overlast.broadcasttest.sent=已发送 OverLast 测试播报。
+command.overlast.broadcasttest.no_players=当前没有在线玩家可接收测试播报。
+
+broadcast.overlast.test.title=紧急播报
+broadcast.overlast.test.body=附近寄生体活动正在上升。请保持结队，确保净化路线畅通，并准备备用避难点。
+broadcast.overlast.test.footer=点击此处再次填入 /overlast broadcasttest
+broadcast.overlast.test.hover=填入播报测试指令
+
 # Config
 overlast.client=客户端
 overlast.client.tooltip=仅限客户端设定
