@@ -101,12 +101,13 @@ public class CommandOverLast extends CommandBase {
         }
 
         ITextComponent footer = Broadcasts.createCommandFooter(
-                new TextComponentTranslation("broadcast.overlast.test.footer"),
+                new TextComponentTranslation("broadcast.overlast.test.outro"),
                 TEST_COMMAND,
                 new TextComponentTranslation("broadcast.overlast.test.hover"));
-        Broadcasts.sendNews(
+        Broadcasts.sendTransmission(
                 server,
-                new TextComponentTranslation("broadcast.overlast.test.title"),
+                new TextComponentTranslation("broadcast.overlast.test.intro"),
+                new TextComponentTranslation("broadcast.overlast.test.weather"),
                 new TextComponentTranslation("broadcast.overlast.test.body"),
                 footer);
         notifyCommandListener(sender, this, "command.overlast.broadcasttest.sent");

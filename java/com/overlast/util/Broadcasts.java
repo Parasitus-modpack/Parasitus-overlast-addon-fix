@@ -20,16 +20,25 @@ public final class Broadcasts {
     private Broadcasts() {
     }
 
-    public static void sendNews(MinecraftServer server, ITextComponent title, ITextComponent body, ITextComponent footer) {
+    public static void sendTransmission(MinecraftServer server, ITextComponent intro, ITextComponent weather,
+            ITextComponent main, ITextComponent outro) {
         List<EntityPlayerMP> players = server.getPlayerList().getPlayers();
         for (EntityPlayerMP player : players) {
             if (isMuted(player)) {
                 continue;
             }
             player.sendMessage(createHeader());
-            player.sendMessage(createBody(title, body));
-            if (footer != null) {
-                player.sendMessage(footer.createCopy());
+            if (intro != null) {
+                player.sendMessage(createLine(intro, TextFormatting.GRAY, false, false));
+            }
+            if (weather != null) {
+                player.sendMessage(createLine(weather, TextFormatting.AQUA, false, false));
+            }
+            if (main != null) {
+                player.sendMessage(createLine(main, TextFormatting.WHITE, false, false));
+            }
+            if (outro != null) {
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, true));
             }
         }
     }
@@ -54,17 +63,15 @@ public final class Broadcasts {
     private static ITextComponent createHeader() {
         TextComponentString header = new TextComponentString("");
         header.appendSibling(styled("========== ", TextFormatting.DARK_GRAY, false, false));
-        header.appendSibling(styled("[ INCOMING TRANSMISSION ]", TextFormatting.GOLD, true, false));
+        header.appendSibling(styled("[Incoming Transmission]", TextFormatting.GOLD, true, false));
         header.appendSibling(styled(" ==========", TextFormatting.DARK_GRAY, false, false));
         return header;
     }
 
-    private static ITextComponent createBody(ITextComponent title, ITextComponent body) {
+    private static ITextComponent createLine(ITextComponent text, TextFormatting color, boolean bold, boolean italic) {
         TextComponentString line = new TextComponentString("");
-        line.appendSibling(styled("> ", TextFormatting.RED, true, false));
-        line.appendSibling(title.createCopy().setStyle(new Style().setColor(TextFormatting.RED).setBold(true)));
-        line.appendSibling(styled("  ", TextFormatting.WHITE, false, false));
-        line.appendSibling(body.createCopy().setStyle(new Style().setColor(TextFormatting.GRAY)));
+        line.appendSibling(styled("> ", TextFormatting.DARK_GRAY, false, false));
+        line.appendSibling(text.createCopy().setStyle(new Style().setColor(color).setBold(bold).setItalic(italic)));
         return line;
     }
 

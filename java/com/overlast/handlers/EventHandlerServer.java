@@ -19,6 +19,7 @@ import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -227,10 +228,21 @@ public class EventHandlerServer {
 
     private static void broadcastDailyMessage(net.minecraft.server.MinecraftServer server) {
         int messageIndex = RANDOM.nextInt(DAILY_MESSAGE_COUNT);
-        Broadcasts.sendNews(
+        Broadcasts.sendTransmission(
                 server,
-                new TextComponentString("RADIO DOOM"),
+                new TextComponentTranslation("broadcast.overlast.daily.intro", Integer.valueOf((int) (server.getWorld(0).getWorldTime() / 24000L) + 1)),
+                getWeatherMessage(server),
                 new TextComponentTranslation("message.seasons.daily" + messageIndex),
-                null);
+                new TextComponentTranslation("broadcast.overlast.daily.outro"));
+    }
+
+    private static TextComponentTranslation getWeatherMessage(MinecraftServer server) {
+        if (server.getWorld(0).isThundering()) {
+            return new TextComponentTranslation("broadcast.overlast.daily.weather.thunder");
+        }
+        if (server.getWorld(0).isRaining()) {
+            return new TextComponentTranslation("broadcast.overlast.daily.weather.rain");
+        }
+        return new TextComponentTranslation("broadcast.overlast.daily.weather.clear");
     }
 }
