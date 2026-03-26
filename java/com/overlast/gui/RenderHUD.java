@@ -16,9 +16,6 @@ public class RenderHUD extends Gui {
 
 	private static final int HUD_MARGIN = 8;
 	private static final int HUD_SPACING = 8;
-	private static final int TEXT_BAR_GAP = 2;
-	private static final int TITLE_COLOR = 0xF0E6CF;
-	private static final int VALUE_COLOR = 0xFFFFFF;
 
 	//索引值
 	private static int EvoIndex=1;
@@ -83,8 +80,6 @@ public class RenderHUD extends Gui {
             int movingTextureX;
             int movingTextureY;
             int movingWidth;
-            String valueText;
-            int headerHeight = mc.fontRenderer.FONT_HEIGHT;
 
             // The loop that renders the main stat bars. 循环渲染主要属性条的。
 			for (StatBar bar : MAIN_BARS) {
@@ -98,23 +93,16 @@ public class RenderHUD extends Gui {
                     movingTextureX = bar.getMovingTextureX();
                     movingTextureY = bar.getMovingTextureY();
                     movingWidth = bar.getMovingWidth();
-                    valueText = bar.getTextToDisplay();
 
-					int widgetHeight = headerHeight + TEXT_BAR_GAP + fullHeight;
+					int widgetHeight = fullHeight;
 					int left = getX(screenWidth, fullWidth);
 					int top = getY(screenHeight, i, widgetHeight);
-					int barTop = top + headerHeight + TEXT_BAR_GAP;
 					i++;
 
                     // Actual rendering. First one is the moving bar. Second one is the whole bar.
                     mc.renderEngine.bindTexture(texture);
-                    drawTexturedModalRect(left + bar.getFillRenderXOffset(), barTop + bar.getFillRenderYOffset(), movingTextureX, movingTextureY, movingWidth, fullHeight);
-                    drawTexturedModalRect(left, barTop, 0, 0, fullWidth, fullHeight);
-
-					String phaseText = getPhaseText();
-					mc.fontRenderer.drawStringWithShadow(phaseText, left, top, TITLE_COLOR);
-					int valueX = left + fullWidth - mc.fontRenderer.getStringWidth(valueText);
-					mc.fontRenderer.drawStringWithShadow(valueText, valueX, top, VALUE_COLOR);
+                    drawTexturedModalRect(left + bar.getFillRenderXOffset(), top + bar.getFillRenderYOffset(), movingTextureX, movingTextureY, movingWidth, fullHeight);
+                    drawTexturedModalRect(left, top, 0, 0, fullWidth, fullHeight);
 				}
             }
 
@@ -163,13 +151,5 @@ public class RenderHUD extends Gui {
 		}
 
 		return OverConfig.CLIENT.barPositions.toLowerCase(Locale.ROOT);
-	}
-
-	private String getPhaseText() {
-		if (EvoIndex < 0) {
-			return "Evolution Dormant";
-		}
-
-		return "Phase " + EvoIndex;
 	}
 }
