@@ -230,7 +230,7 @@ public class EventHandlerServer {
     private static void broadcastDailyMessage(net.minecraft.server.MinecraftServer server) {
         int messageIndex = RANDOM.nextInt(DAILY_MESSAGE_COUNT);
         long worldDay = server.getWorld(0).getWorldTime() / 24000L;
-        Broadcasts.sendTransmission(
+        Broadcasts.sendDailyTransmission(
                 server,
                 new TextComponentTranslation("message.seasons.login", new TextComponentTranslation(getSeasonTranslationKey(worldDay)),
                         Integer.valueOf(getDayInSeason(worldDay))),

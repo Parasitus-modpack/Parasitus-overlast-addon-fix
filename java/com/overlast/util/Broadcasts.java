@@ -16,6 +16,7 @@ public final class Broadcasts {
 
     private static final String PLAYER_PERSISTED_TAG = "PlayerPersisted";
     private static final String MUTED_BROADCASTS_TAG = "overlastMutedBroadcasts";
+    private static final String DAILY_MUTED_UNTIL_INVASION_TAG = "overlastDailyMutedUntilInvasion";
 
     private Broadcasts() {
     }
@@ -43,6 +44,55 @@ public final class Broadcasts {
         }
     }
 
+    public static void sendDailyTransmission(MinecraftServer server, ITextComponent intro, ITextComponent weather,
+            ITextComponent main, ITextComponent outro) {
+        List<EntityPlayerMP> players = server.getPlayerList().getPlayers();
+        for (EntityPlayerMP player : players) {
+            if (isMuted(player) || isDailyMutedUntilInvasion(player)) {
+                continue;
+            }
+            player.sendMessage(createHeader());
+            if (intro != null) {
+                player.sendMessage(createLine(intro, TextFormatting.GRAY, false, false));
+            }
+            if (weather != null) {
+                player.sendMessage(createLine(weather, TextFormatting.AQUA, false, false));
+            }
+            if (main != null) {
+                player.sendMessage(createLine(main, TextFormatting.WHITE, false, false));
+            }
+            if (outro != null) {
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, true));
+            }
+        }
+    }
+
+    public static void sendInvasionTransmission(MinecraftServer server, ITextComponent intro, ITextComponent weather,
+            ITextComponent main, ITextComponent outro) {
+        List<EntityPlayerMP> players = server.getPlayerList().getPlayers();
+        for (EntityPlayerMP player : players) {
+            if (isMuted(player)) {
+                continue;
+            }
+            if (isDailyMutedUntilInvasion(player)) {
+                setDailyMutedUntilInvasion(player, false);
+            }
+            player.sendMessage(createHeader());
+            if (intro != null) {
+                player.sendMessage(createLine(intro, TextFormatting.GRAY, false, false));
+            }
+            if (weather != null) {
+                player.sendMessage(createLine(weather, TextFormatting.AQUA, false, false));
+            }
+            if (main != null) {
+                player.sendMessage(createLine(main, TextFormatting.WHITE, false, false));
+            }
+            if (outro != null) {
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, true));
+            }
+        }
+    }
+
     public static boolean isMuted(EntityPlayer player) {
         NBTTagCompound persistedData = getPersistedData(player, false);
         return persistedData != null && persistedData.getBoolean(MUTED_BROADCASTS_TAG);
@@ -50,6 +100,15 @@ public final class Broadcasts {
 
     public static void setMuted(EntityPlayer player, boolean muted) {
         getPersistedData(player, true).setBoolean(MUTED_BROADCASTS_TAG, muted);
+    }
+
+    public static boolean isDailyMutedUntilInvasion(EntityPlayer player) {
+        NBTTagCompound persistedData = getPersistedData(player, false);
+        return persistedData != null && persistedData.getBoolean(DAILY_MUTED_UNTIL_INVASION_TAG);
+    }
+
+    public static void setDailyMutedUntilInvasion(EntityPlayer player, boolean muted) {
+        getPersistedData(player, true).setBoolean(DAILY_MUTED_UNTIL_INVASION_TAG, muted);
     }
 
     public static ITextComponent createCommandFooter(ITextComponent text, String command, ITextComponent hoverText) {

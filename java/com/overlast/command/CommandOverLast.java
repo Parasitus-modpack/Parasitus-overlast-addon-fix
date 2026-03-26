@@ -14,14 +14,19 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 
 public class CommandOverLast extends CommandBase {
 
     private static final String TEST_SUBCOMMAND = "broadcasttest";
+    private static final String INVASION_TEST_SUBCOMMAND = "invasiontest";
     private static final String MUTE_SUBCOMMAND = "mute";
     private static final String UNMUTE_SUBCOMMAND = "unmute";
     private static final String STATUS_SUBCOMMAND = "mutestatus";
+    private static final String MUTE_UNTIL_NEXT_INVASION_SUBCOMMAND = "muteuntilnextinvasion";
 
     @Override
     public String getName() {
@@ -50,6 +55,11 @@ public class CommandOverLast extends CommandBase {
             return;
         }
 
+        if (INVASION_TEST_SUBCOMMAND.equals(subcommand)) {
+            executeInvasionTest(server, sender);
+            return;
+        }
+
         if (MUTE_SUBCOMMAND.equals(subcommand)) {
             EntityPlayer player = getPlayerSender(sender);
             Broadcasts.setMuted(player, true);
@@ -66,8 +76,14 @@ public class CommandOverLast extends CommandBase {
 
         if (STATUS_SUBCOMMAND.equals(subcommand)) {
             EntityPlayer player = getPlayerSender(sender);
-            sender.sendMessage(new TextComponentTranslation(
-                    Broadcasts.isMuted(player) ? "command.overlast.mute.status.on" : "command.overlast.mute.status.off"));
+            sender.sendMessage(createMuteStatusMessage(player));
+            return;
+        }
+
+        if (MUTE_UNTIL_NEXT_INVASION_SUBCOMMAND.equals(subcommand)) {
+            EntityPlayer player = getPlayerSender(sender);
+            Broadcasts.setDailyMutedUntilInvasion(player, true);
+            sender.sendMessage(new TextComponentTranslation("command.overlast.mute_until_next_invasion.enabled"));
             return;
         }
 
@@ -82,8 +98,10 @@ public class CommandOverLast extends CommandBase {
             subcommands.add(MUTE_SUBCOMMAND);
             subcommands.add(UNMUTE_SUBCOMMAND);
             subcommands.add(STATUS_SUBCOMMAND);
+            subcommands.add(MUTE_UNTIL_NEXT_INVASION_SUBCOMMAND);
             if (sender.canUseCommand(2, getName())) {
                 subcommands.add(TEST_SUBCOMMAND);
+                subcommands.add(INVASION_TEST_SUBCOMMAND);
             }
             return getListOfStringsMatchingLastWord(args, subcommands);
         }
@@ -106,11 +124,46 @@ public class CommandOverLast extends CommandBase {
                 new TextComponentTranslation("broadcast.overlast.test.outro"));
     }
 
+    private void executeInvasionTest(MinecraftServer server, ICommandSender sender) throws CommandException {
+        if (!sender.canUseCommand(2, getName())) {
+            throw new CommandException("commands.generic.permission");
+        }
+        if (server.getPlayerList().getCurrentPlayerCount() <= 0) {
+            throw new CommandException("command.overlast.broadcasttest.no_players");
+        }
+
+        Broadcasts.sendInvasionTransmission(
+                server,
+                new TextComponentTranslation("broadcast.overlast.invasion.intro"),
+                new TextComponentTranslation("broadcast.overlast.invasion.weather"),
+                new TextComponentTranslation("broadcast.overlast.invasion.body"),
+                new TextComponentTranslation("broadcast.overlast.invasion.outro"));
+    }
+
     private EntityPlayer getPlayerSender(ICommandSender sender) throws CommandException {
         Entity senderEntity = sender.getCommandSenderEntity();
         if (!(senderEntity instanceof EntityPlayer)) {
             throw new CommandException("command.overlast.player_only");
         }
         return (EntityPlayer) senderEntity;
+    }
+
+    private TextComponentString createMuteStatusMessage(EntityPlayer player) {
+        TextComponentString line = new TextComponentString("");
+        line.appendSibling(styled("Radio Status", TextFormatting.GOLD, true));
+        line.appendSibling(styled(" - ", TextFormatting.DARK_GRAY, false));
+        if (Broadcasts.isMuted(player)) {
+            line.appendSibling(styled("Muted", TextFormatting.RED, true));
+        } else if (Broadcasts.isDailyMutedUntilInvasion(player)) {
+            line.appendSibling(styled("Muted Until Next Invasion", TextFormatting.YELLOW, true));
+        } else {
+            line.appendSibling(styled("Active", TextFormatting.GREEN, true));
+        }
+        return line;
+    }
+
+    private TextComponentString styled(String text, TextFormatting color, boolean bold) {
+        return (TextComponentString) new TextComponentString(text)
+                .setStyle(new Style().setColor(color).setBold(Boolean.valueOf(bold)));
     }
 }

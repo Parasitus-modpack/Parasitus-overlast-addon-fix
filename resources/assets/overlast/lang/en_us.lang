@@ -442,19 +442,24 @@ config.overlast:custom.finalBattleDim.tooltip=Final battle dimension ID. (eg: 0)
 
 #command line
 commands.overlast.usage=Commands usage
-command.overlast.usage=Usage: /overlast <mute|unmute|mutestatus|broadcasttest>
+command.overlast.usage=Usage: /overlast <mute|unmute|mutestatus|muteuntilnextinvasion|broadcasttest|invasiontest>
 command.overlast.broadcasttest.no_players=No players are online to receive the test broadcast.
 command.overlast.player_only=This subcommand can only be used by a player.
 command.overlast.mute.enabled=OverLast broadcasts are now muted for you.
 command.overlast.mute.disabled=OverLast broadcasts are now unmuted for you.
 command.overlast.mute.status.on=OverLast broadcasts are currently muted for you.
 command.overlast.mute.status.off=OverLast broadcasts are currently unmuted for you.
+command.overlast.mute_until_next_invasion.enabled=Daily OverLast broadcasts are now muted until the next invasion alert for you.
 
 broadcast.overlast.test.title=EMERGENCY TRANSMISSION
 broadcast.overlast.test.intro=Signal lock acquired. Test channel is live.
 broadcast.overlast.test.weather=Weather relay: clear signal.
 broadcast.overlast.test.body=Parasite activity is rising nearby. Stay grouped, keep purifier routes clear, and prepare fallback shelters.
 broadcast.overlast.test.outro=Transmission complete. End of test channel.
+broadcast.overlast.invasion.intro=Priority override. Invasion alert channel is now active.
+broadcast.overlast.invasion.weather=Threat relay: hostile movement confirmed.
+broadcast.overlast.invasion.body=An active parasite invasion has been detected. All survivors are advised to arm themselves and regroup immediately.
+broadcast.overlast.invasion.outro=Temporary radio mutes have been cleared. End of invasion alert.
 broadcast.overlast.daily.weather.clear=Weather report: Clear skies over the region.
 broadcast.overlast.daily.weather.rain=Weather report: Rainfall detected. Travel carefully.
 broadcast.overlast.daily.weather.thunder=Weather report: Thunderstorm conditions detected. Stay under cover.
