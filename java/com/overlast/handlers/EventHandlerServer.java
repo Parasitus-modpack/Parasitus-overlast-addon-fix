@@ -295,7 +295,7 @@ public class EventHandlerServer {
         return (int) ((worldDay / SEASON_LENGTH_DAYS) % 4L);
     }
 
-    private static TextComponentTranslation getSeasonalOutroMessage(net.minecraft.world.World world) {
+    public static TextComponentTranslation getSeasonalOutroMessage(net.minecraft.world.World world) {
         long worldDay = world.getWorldTime() / 24000L;
         switch (getSeasonIndex(worldDay)) {
             case 0:

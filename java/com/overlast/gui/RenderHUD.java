@@ -16,6 +16,7 @@ public class RenderHUD extends Gui {
 
 	private static final int HUD_MARGIN = 8;
 	private static final int HUD_SPACING = 8;
+	private static final int PHASE_TEXT_GAP = 4;
 
 	//索引值
 	private static int EvoIndex=1;
@@ -103,10 +104,30 @@ public class RenderHUD extends Gui {
                     net.minecraft.client.renderer.GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                     drawTexturedModalRect(left + bar.getFillRenderXOffset(), top + bar.getFillRenderYOffset(), movingTextureX, movingTextureY, movingWidth, fullHeight);
                     drawTexturedModalRect(left, top, 0, 0, fullWidth, fullHeight);
+
+					if (bar == EVOLUTION_BAR) {
+						drawPhaseProgress(mc, screenWidth, left, top, fullWidth, fullHeight, bar);
+					}
 				}
             }
 
 		}
+	}
+
+	private void drawPhaseProgress(Minecraft mc, int screenWidth, int left, int top, int fullWidth, int fullHeight, StatBar bar) {
+		String progressText = "Phase " + EvoIndex + ": " + bar.getTextToDisplay();
+		int textWidth = mc.fontRenderer.getStringWidth(progressText);
+		String barPosition = getBarPosition();
+
+		int textX;
+		if (barPosition.endsWith("left")) {
+			textX = left + fullWidth + PHASE_TEXT_GAP;
+		} else {
+			textX = left - textWidth - PHASE_TEXT_GAP;
+		}
+
+		int textY = top + (fullHeight / 2) - (mc.fontRenderer.FONT_HEIGHT / 2);
+		mc.fontRenderer.drawStringWithShadow(progressText, textX, textY, 0xFFFFFF);
 	}
 
 	

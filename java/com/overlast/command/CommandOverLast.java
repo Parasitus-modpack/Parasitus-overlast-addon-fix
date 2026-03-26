@@ -1,5 +1,6 @@
 package com.overlast.command;
 
+import com.overlast.handlers.EventHandlerServer;
 import com.overlast.util.Broadcasts;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -121,7 +122,7 @@ public class CommandOverLast extends CommandBase {
                 new TextComponentTranslation("broadcast.overlast.test.intro"),
                 new TextComponentTranslation("broadcast.overlast.test.weather"),
                 new TextComponentTranslation("broadcast.overlast.test.body"),
-                new TextComponentTranslation("broadcast.overlast.test.outro"));
+            EventHandlerServer.getSeasonalOutroMessage(server.getWorld(0)));
     }
 
     private void executeInvasionTest(MinecraftServer server, ICommandSender sender) throws CommandException {
@@ -137,7 +138,7 @@ public class CommandOverLast extends CommandBase {
                 new TextComponentTranslation("broadcast.overlast.invasion.intro"),
                 new TextComponentTranslation("broadcast.overlast.invasion.weather"),
                 new TextComponentTranslation("broadcast.overlast.invasion.body"),
-                new TextComponentTranslation("broadcast.overlast.invasion.outro"));
+            EventHandlerServer.getSeasonalOutroMessage(server.getWorld(0)));
     }
 
     private EntityPlayer getPlayerSender(ICommandSender sender) throws CommandException {
