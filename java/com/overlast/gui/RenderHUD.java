@@ -99,8 +99,8 @@ public class RenderHUD extends Gui {
 					int top = getY(screenHeight, i, widgetHeight);
 					i++;
 
-                    // Actual rendering. First one is the moving bar. Second one is the whole bar.
                     mc.renderEngine.bindTexture(texture);
+                    net.minecraft.client.renderer.GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                     drawTexturedModalRect(left + bar.getFillRenderXOffset(), top + bar.getFillRenderYOffset(), movingTextureX, movingTextureY, movingWidth, fullHeight);
                     drawTexturedModalRect(left, top, 0, 0, fullWidth, fullHeight);
 				}
