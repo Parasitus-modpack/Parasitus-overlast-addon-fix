@@ -14,7 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 
 public class CommandOverLast extends CommandBase {
@@ -23,7 +22,6 @@ public class CommandOverLast extends CommandBase {
     private static final String MUTE_SUBCOMMAND = "mute";
     private static final String UNMUTE_SUBCOMMAND = "unmute";
     private static final String STATUS_SUBCOMMAND = "mutestatus";
-    private static final String TEST_COMMAND = "/overlast " + TEST_SUBCOMMAND;
 
     @Override
     public String getName() {
@@ -100,17 +98,12 @@ public class CommandOverLast extends CommandBase {
             throw new CommandException("command.overlast.broadcasttest.no_players");
         }
 
-        ITextComponent footer = Broadcasts.createCommandFooter(
-                new TextComponentTranslation("broadcast.overlast.test.outro"),
-                TEST_COMMAND,
-                new TextComponentTranslation("broadcast.overlast.test.hover"));
         Broadcasts.sendTransmission(
                 server,
                 new TextComponentTranslation("broadcast.overlast.test.intro"),
                 new TextComponentTranslation("broadcast.overlast.test.weather"),
                 new TextComponentTranslation("broadcast.overlast.test.body"),
-                footer);
-        notifyCommandListener(sender, this, "command.overlast.broadcasttest.sent");
+                new TextComponentTranslation("broadcast.overlast.test.outro"));
     }
 
     private EntityPlayer getPlayerSender(ICommandSender sender) throws CommandException {
