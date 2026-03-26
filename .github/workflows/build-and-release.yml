@@ -4,7 +4,13 @@ on:
   push:
     branches:
       - "**"
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.markdown"
   pull_request:
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.markdown"
 
 permissions:
   contents: write
