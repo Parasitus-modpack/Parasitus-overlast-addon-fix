@@ -1,6 +1,8 @@
 package com.overlast.util;
 
 import java.util.List;
+import java.util.Objects;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -30,16 +32,16 @@ public final class Broadcasts {
             }
             player.sendMessage(createHeader());
             if (intro != null) {
-                player.sendMessage(createLine(intro, TextFormatting.GRAY, false, false));
+                player.sendMessage(createLine(intro, TextFormatting.GRAY, false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, TextFormatting.AQUA, false, false));
+                player.sendMessage(createLine(weather, TextFormatting.AQUA, false));
             }
             if (main != null) {
-                player.sendMessage(createLine(main, TextFormatting.WHITE, false, false));
+                player.sendMessage(createLine(main, TextFormatting.WHITE, false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, true));
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true));
             }
         }
     }
@@ -53,16 +55,16 @@ public final class Broadcasts {
             }
             player.sendMessage(createHeader());
             if (intro != null) {
-                player.sendMessage(createLine(intro, TextFormatting.GRAY, false, false));
+                player.sendMessage(createLine(intro, TextFormatting.GRAY, false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, TextFormatting.AQUA, false, false));
+                player.sendMessage(createLine(weather, TextFormatting.AQUA, false));
             }
             if (main != null) {
-                player.sendMessage(createLine(main, TextFormatting.WHITE, false, false));
+                player.sendMessage(createLine(main, TextFormatting.WHITE, false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, true));
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true));
             }
         }
     }
@@ -79,16 +81,16 @@ public final class Broadcasts {
             }
             player.sendMessage(createHeader());
             if (intro != null) {
-                player.sendMessage(createLine(intro, TextFormatting.GRAY, false, false));
+                player.sendMessage(createLine(intro, TextFormatting.GRAY, false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, TextFormatting.AQUA, false, false));
+                player.sendMessage(createLine(weather, TextFormatting.AQUA, false));
             }
             if (main != null) {
-                player.sendMessage(createLine(main, TextFormatting.WHITE, false, false));
+                player.sendMessage(createLine(main, TextFormatting.WHITE, false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, true));
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true));
             }
         }
     }
@@ -99,7 +101,7 @@ public final class Broadcasts {
     }
 
     public static void setMuted(EntityPlayer player, boolean muted) {
-        getPersistedData(player, true).setBoolean(MUTED_BROADCASTS_TAG, muted);
+        Objects.requireNonNull(getPersistedData(player, true)).setBoolean(MUTED_BROADCASTS_TAG, muted);
     }
 
     public static boolean isDailyMutedUntilInvasion(EntityPlayer player) {
@@ -108,7 +110,7 @@ public final class Broadcasts {
     }
 
     public static void setDailyMutedUntilInvasion(EntityPlayer player, boolean muted) {
-        getPersistedData(player, true).setBoolean(DAILY_MUTED_UNTIL_INVASION_TAG, muted);
+        Objects.requireNonNull(getPersistedData(player, true)).setBoolean(DAILY_MUTED_UNTIL_INVASION_TAG, muted);
     }
 
     public static ITextComponent createCommandFooter(ITextComponent text, String command, ITextComponent hoverText) {
@@ -121,22 +123,22 @@ public final class Broadcasts {
 
     private static ITextComponent createHeader() {
         TextComponentString header = new TextComponentString("");
-        header.appendSibling(styled("========== ", TextFormatting.DARK_GRAY, false, false));
-        header.appendSibling(styled("[Incoming Transmission]", TextFormatting.GOLD, true, false));
-        header.appendSibling(styled(" ==========", TextFormatting.DARK_GRAY, false, false));
+        header.appendSibling(styled("========== ", TextFormatting.DARK_GRAY, false));
+        header.appendSibling(styled("[Incoming Transmission]", TextFormatting.GOLD, true));
+        header.appendSibling(styled(" ==========", TextFormatting.DARK_GRAY, false));
         return header;
     }
 
-    private static ITextComponent createLine(ITextComponent text, TextFormatting color, boolean bold, boolean italic) {
+    private static ITextComponent createLine(ITextComponent text, TextFormatting color, boolean italic) {
         TextComponentString line = new TextComponentString("");
-        line.appendSibling(styled("> ", TextFormatting.DARK_GRAY, false, false));
-        line.appendSibling(text.createCopy().setStyle(new Style().setColor(color).setBold(bold).setItalic(italic)));
+        line.appendSibling(styled("> ", TextFormatting.DARK_GRAY, false));
+        line.appendSibling(text.createCopy().setStyle(new Style().setColor(color).setBold(false).setItalic(italic)));
         return line;
     }
 
-    private static TextComponentString styled(String text, TextFormatting color, boolean bold, boolean italic) {
+    private static TextComponentString styled(String text, TextFormatting color, boolean bold) {
         return (TextComponentString) new TextComponentString(text)
-                .setStyle(new Style().setColor(color).setBold(bold).setItalic(italic));
+                .setStyle(new Style().setColor(color).setBold(bold).setItalic(false));
     }
 
     private static NBTTagCompound getPersistedData(EntityPlayer player, boolean create) {
