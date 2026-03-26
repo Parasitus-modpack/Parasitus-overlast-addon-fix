@@ -4,6 +4,8 @@ import com.overlast.config.OverConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.Locale;
+
 public class StatBar {
 	
 	/*
@@ -32,6 +34,10 @@ public class StatBar {
 	// Values it holds (actual and max)  
     private float value = 0f;
     private float maxValue = 100f;
+    private float displayValue = 0f;
+    private long lastAnimationTick = System.currentTimeMillis();
+
+    private static final float ANIMATION_SPEED = 12.0f;
 	
 	public StatBar(StatType type, int fullWidth, int fullHeight, int defaultBarWidth, int movingTextureX, int movingTextureY, ResourceLocation texture) {
 		
@@ -46,12 +52,17 @@ public class StatBar {
 
 	public void setValue(float value) {
 
-	    this.value = value;
+	    this.value = Math.max(0f, value);
     }
 
     public void setMaxValue(float value) {
 
-	    this.maxValue = value;
+	    this.maxValue = Math.max(0f, value);
+	    if (this.maxValue <= 0f) {
+	    	this.displayValue = 0f;
+	    } else {
+	    	this.displayValue = Math.min(this.displayValue, this.maxValue);
+	    }
     }
 
 	
@@ -73,6 +84,14 @@ public class StatBar {
 	public int getMovingTextureY() {
 		
 		return this.movingTextureY;
+	}
+
+	public int getFillRenderXOffset() {
+		return this.movingTextureX;
+	}
+
+	public int getFillRenderYOffset() {
+		return this.movingTextureY - this.fullHeight;
 	}
 	
 	public int getFullBarWidth() {
@@ -110,41 +129,59 @@ public class StatBar {
 	
 	// Determine the width of the bar. 确定属性条的实际宽度。
 	public int getMovingWidth() {
+		float clampedMaxValue = Math.max(0f, this.maxValue);
+		if (clampedMaxValue <= 0f) {
+			this.displayValue = 0f;
+			this.lastAnimationTick = System.currentTimeMillis();
+			return 0;
+		}
 
-		// One "unit". The width of the bar PER one thirst, one temperature, one sanity, etc. 一个单位即为一个条的宽度
-		//这里默认是800/100，即单个单元宽度为8，数字更小渲染更密。
-		double singleUnit = (double) defaultBarWidth / maxValue;
-		
-		// Multiplication of singleUnit to get the width
-		int width = (int) (singleUnit * value);
-		
-		return width;
+		float animatedValue = getAnimatedValue(clampedMaxValue);
+		double singleUnit = (double) this.defaultBarWidth / clampedMaxValue;
+		return Math.round((float) (singleUnit * animatedValue));
 	}
 	
 	// Determine text to be displayed.
 	public String getTextToDisplay() {
-		
-		// Round the actual value
-		double roundedValue = (double) (Math.round(value * 10)) / 10;
-
-		double evoValue = (double) (Math.round(value)) / 1.0;
-		String text;
-		
-		// String
-		    if (type == StatType.EVOLUTION) {
-
-		    	if(roundedValue>=1000000) {
-		    		text =String.format("%.2f",evoValue/10000)+ "wP";
-				}else {
-					text = roundedValue + "P";
-				}
+		float currentValue = Math.max(0f, this.value);
+		if (this.maxValue <= 0f) {
+			return formatValue(currentValue);
 		}
 
-		else {
-			
-			text = Double.toString(roundedValue);
+		return formatValue(currentValue) + " / " + formatValue(this.maxValue);
+	}
+
+	private float getAnimatedValue(float clampedMaxValue) {
+		float targetValue = Math.min(Math.max(this.value, 0f), clampedMaxValue);
+		long now = System.currentTimeMillis();
+		float deltaSeconds = (now - this.lastAnimationTick) / 1000.0f;
+		this.lastAnimationTick = now;
+
+		float lerpFactor = Math.min(1.0f, Math.max(0f, deltaSeconds) * ANIMATION_SPEED);
+		this.displayValue += (targetValue - this.displayValue) * lerpFactor;
+
+		if (Math.abs(targetValue - this.displayValue) < 0.05f) {
+			this.displayValue = targetValue;
 		}
-		
-		return text;
+
+		return Math.min(Math.max(this.displayValue, 0f), clampedMaxValue);
+	}
+
+	private String formatValue(float rawValue) {
+		float absoluteValue = Math.abs(rawValue);
+
+		if (absoluteValue >= 1000000f) {
+			return String.format(Locale.ROOT, "%.1fM", rawValue / 1000000f);
+		}
+
+		if (absoluteValue >= 1000f) {
+			return String.format(Locale.ROOT, "%.1fk", rawValue / 1000f);
+		}
+
+		if (rawValue == Math.round(rawValue)) {
+			return Integer.toString(Math.round(rawValue));
+		}
+
+		return String.format(Locale.ROOT, "%.1f", rawValue);
 	}
 }
