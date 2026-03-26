@@ -96,18 +96,6 @@ message.evodevice.normal=No Nodes detected, shutting down.
 message.evodevice.success=Warning, Nodes have been detected in the area. Possible Node coordinates are (x, y, z, age):
 message.evodevice.fail=FATEL ERORR, shutting down.
 
-message.lowsan.text0=§k They §l§r§d   L  O  V  E
-message.lowsan.text1=§k They §l§r§c Survive To Live
-message.lowsan.text2=§k They §l§r§f Is it a friend?
-message.lowsan.text3=§k They §l§r§0 We are Parasitic
-message.lowsan.text4=§k They §l§r§5 Help me!
-message.lowsan.text5=§k They §l§r§f Is the enemy approaching?
-message.lowsan.text6=§k They §l§r§f Wake up ! Escape to the safety zone
-message.lowsan.text7=§k They §l§r§f I know how much you wanna go home.
-message.lowsan.text8=§k They §l§r§8 with all I am
-message.lowsan.text9=§k They §f Parasitic Alive
-message.lowsan.respawn1=§k They §r§f May God be with you
-message.lowsan.respawn2=§k They §r§f Successfully contributed %d points to world evolution
 
 message.seasons.spring=Spring
 message.seasons.summer=Summer
