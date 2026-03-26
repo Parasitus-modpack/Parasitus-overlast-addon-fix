@@ -38,6 +38,7 @@ public class EventHandlerServer {
 
     private static final int DAILY_MESSAGE_COUNT = 57;
     private static final int DAY_START_WINDOW_TICKS = 200;
+    private static final int SEASON_LENGTH_DAYS = 8;
     private static final Map<Integer, Long> lastBroadcastDayByDimension = new HashMap<Integer, Long>();
     private static final Random RANDOM = new Random();
     private static int updateTimer = 0;
@@ -228,9 +229,11 @@ public class EventHandlerServer {
 
     private static void broadcastDailyMessage(net.minecraft.server.MinecraftServer server) {
         int messageIndex = RANDOM.nextInt(DAILY_MESSAGE_COUNT);
+        long worldDay = server.getWorld(0).getWorldTime() / 24000L;
         Broadcasts.sendTransmission(
                 server,
-                new TextComponentTranslation("broadcast.overlast.daily.intro", Integer.valueOf((int) (server.getWorld(0).getWorldTime() / 24000L) + 1)),
+                new TextComponentTranslation("message.seasons.login", new TextComponentTranslation(getSeasonTranslationKey(worldDay)),
+                        Integer.valueOf(getDayInSeason(worldDay))),
                 getWeatherMessage(server),
                 new TextComponentTranslation("message.seasons.daily" + messageIndex),
                 new TextComponentTranslation("broadcast.overlast.daily.outro"));
@@ -244,5 +247,24 @@ public class EventHandlerServer {
             return new TextComponentTranslation("broadcast.overlast.daily.weather.rain");
         }
         return new TextComponentTranslation("broadcast.overlast.daily.weather.clear");
+    }
+
+    private static String getSeasonTranslationKey(long worldDay) {
+        int seasonIndex = (int) ((worldDay / SEASON_LENGTH_DAYS) % 4L);
+        switch (seasonIndex) {
+            case 0:
+                return "message.seasons.spring";
+            case 1:
+                return "message.seasons.summer";
+            case 2:
+                return "message.seasons.fall";
+            case 3:
+            default:
+                return "message.seasons.winter";
+        }
+    }
+
+    private static int getDayInSeason(long worldDay) {
+        return (int) (worldDay % SEASON_LENGTH_DAYS) + 1;
     }
 }

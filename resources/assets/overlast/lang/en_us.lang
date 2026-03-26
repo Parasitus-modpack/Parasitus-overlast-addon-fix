@@ -455,7 +455,6 @@ broadcast.overlast.test.intro=Signal lock acquired. Test channel is live.
 broadcast.overlast.test.weather=Weather relay: clear signal.
 broadcast.overlast.test.body=Parasite activity is rising nearby. Stay grouped, keep purifier routes clear, and prepare fallback shelters.
 broadcast.overlast.test.outro=Transmission complete. End of test channel.
-broadcast.overlast.daily.intro=Radio Doom online. Daily transmission for day %d.
 broadcast.overlast.daily.weather.clear=Weather report: Clear skies over the region.
 broadcast.overlast.daily.weather.rain=Weather report: Rainfall detected. Travel carefully.
 broadcast.overlast.daily.weather.thunder=Weather report: Thunderstorm conditions detected. Stay under cover.
