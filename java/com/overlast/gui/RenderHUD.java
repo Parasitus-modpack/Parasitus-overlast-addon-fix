@@ -17,9 +17,11 @@ public class RenderHUD extends Gui {
 	private static final int HUD_MARGIN = 8;
 	private static final int HUD_SPACING = 8;
 	private static final int TEXT_BAR_GAP = 2;
-	private static final int BACKDROP_PADDING = 4;
-	private static final int BACKDROP_OUTLINE = 0xA0000000;
-	private static final int BACKDROP_FILL = 0x66000000;
+	private static final int LABEL_PADDING_X = 3;
+	private static final int LABEL_PADDING_Y = 2;
+	private static final int LABEL_OUTLINE = 0x70000000;
+	private static final int LABEL_FILL = 0x28000000;
+	private static final int BAR_OUTLINE = 0x35000000;
 	private static final int TITLE_COLOR = 0xF0E6CF;
 	private static final int VALUE_COLOR = 0xFFFFFF;
 
@@ -107,22 +109,19 @@ public class RenderHUD extends Gui {
 					int left = getX(screenWidth, fullWidth);
 					int top = getY(screenHeight, i, widgetHeight);
 					int barTop = top + headerHeight + TEXT_BAR_GAP;
-					int backdropLeft = left - BACKDROP_PADDING;
-					int backdropTop = top - BACKDROP_PADDING;
-					int backdropRight = left + fullWidth + BACKDROP_PADDING;
-					int backdropBottom = barTop + fullHeight + BACKDROP_PADDING;
 					i++;
-
-					drawBackdrop(backdropLeft, backdropTop, backdropRight, backdropBottom);
 
                     // Actual rendering. First one is the moving bar. Second one is the whole bar.
                     mc.renderEngine.bindTexture(texture);
+                    drawBarOutline(left, barTop, fullWidth, fullHeight);
                     drawTexturedModalRect(left + bar.getFillRenderXOffset(), barTop + bar.getFillRenderYOffset(), movingTextureX, movingTextureY, movingWidth, fullHeight);
                     drawTexturedModalRect(left, barTop, 0, 0, fullWidth, fullHeight);
 
 					String phaseText = getPhaseText();
+					drawLabelBackdrop(left, top, mc.fontRenderer.getStringWidth(phaseText), headerHeight);
 					mc.fontRenderer.drawStringWithShadow(phaseText, left, top, TITLE_COLOR);
 					int valueX = left + fullWidth - mc.fontRenderer.getStringWidth(valueText);
+					drawLabelBackdrop(valueX, top, mc.fontRenderer.getStringWidth(valueText), headerHeight);
 					mc.fontRenderer.drawStringWithShadow(valueText, valueX, top, VALUE_COLOR);
 				}
             }
@@ -182,8 +181,20 @@ public class RenderHUD extends Gui {
 		return "Phase " + EvoIndex;
 	}
 
-	private void drawBackdrop(int left, int top, int right, int bottom) {
-		drawRect(left, top, right, bottom, BACKDROP_OUTLINE);
-		drawRect(left + 1, top + 1, right - 1, bottom - 1, BACKDROP_FILL);
+	private void drawLabelBackdrop(int x, int y, int width, int height) {
+		int left = x - LABEL_PADDING_X;
+		int top = y - LABEL_PADDING_Y;
+		int right = x + width + LABEL_PADDING_X;
+		int bottom = y + height + LABEL_PADDING_Y;
+
+		drawRect(left, top, right, bottom, LABEL_OUTLINE);
+		drawRect(left + 1, top + 1, right - 1, bottom - 1, LABEL_FILL);
+	}
+
+	private void drawBarOutline(int x, int y, int width, int height) {
+		drawRect(x - 1, y - 1, x + width + 1, y, BAR_OUTLINE);
+		drawRect(x - 1, y + height, x + width + 1, y + height + 1, BAR_OUTLINE);
+		drawRect(x - 1, y, x, y + height, BAR_OUTLINE);
+		drawRect(x + width, y, x + width + 1, y + height, BAR_OUTLINE);
 	}
 }
