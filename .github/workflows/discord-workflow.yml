@@ -1,53 +1,92 @@
 name: Discord Notifications
 
 on:
-  release:
+  workflow_run:
+    workflows: ["Build and Release"]
     types:
-      - published
+      - completed
+  push:
+    paths:
+      - "**/*.md"
+      - "**/*.markdown"
   workflow_dispatch:
 
 jobs:
   notify:
+    # For workflow_run: only on successful Build and Release completion.
+    # For push/workflow_dispatch: always run.
+    if: |
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.name == 'Build and Release' && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Send release notification to Discord
+      - name: Send notification to Discord
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           REPO: ${{ github.repository }}
-          ACTOR: ${{ github.event.release.author.login || github.actor }}
-          SHA: ${{ github.sha }}
-          RELEASE_NAME: ${{ github.event.release.name || 'Manual workflow run' }}
-          RELEASE_TAG: ${{ github.event.release.tag_name || '' }}
-          DOWNLOAD_URL: ${{ github.event.release.html_url || '' }}
+          EVENT_NAME: ${{ github.event_name }}
+
+          # workflow_run fields
+          WR_ACTOR: ${{ github.event.workflow_run.actor.login }}
+          WR_SHA: ${{ github.event.workflow_run.head_sha }}
+          WR_BRANCH: ${{ github.event.workflow.run.head_branch }}
+          WR_URL: ${{ github.event.workflow.run.html_url }}
+          WR_WORKFLOW: ${{ github.event.workflow.run.name }}
+
+          # push fields
+          PUSH_ACTOR: ${{ github.actor }}
+          PUSH_SHA: ${{ github.sha }}
+          PUSH_BRANCH: ${{ github.ref_name }}
+          PUSH_URL: ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}
+
         run: |
           if [ -z "$DISCORD_WEBHOOK" ]; then
             echo "DISCORD_WEBHOOK secret is not set"
             exit 1
           fi
 
-          if [ -z "$DOWNLOAD_URL" ]; then
-            DOWNLOAD_URL="https://github.com/$REPO/releases/latest"
-          fi
-
-          if [ -z "$RELEASE_TAG" ]; then
-            RELEASE_TAG="latest"
+          if [ "$EVENT_NAME" = "workflow_run" ]; then
+            ACTOR="$WR_ACTOR"
+            SHA="$WR_SHA"
+            BRANCH="$WR_BRANCH"
+            URL="$WR_URL"
+            WORKFLOW="$WR_WORKFLOW"
+            KIND="Build finished"
+          elif [ "$EVENT_NAME" = "push" ]; then
+            ACTOR="$PUSH_ACTOR"
+            SHA="$PUSH_SHA"
+            BRANCH="$PUSH_BRANCH"
+            URL="$PUSH_URL"
+            WORKFLOW="Markdown-only push"
+            KIND="Docs update"
+          else
+            ACTOR="$PUSH_ACTOR"
+            SHA="$PUSH_SHA"
+            BRANCH="$PUSH_BRANCH"
+            URL="$PUSH_URL"
+            WORKFLOW="Manual dispatch"
+            KIND="Manual notification"
           fi
 
           SHORT_SHA="${SHA:0:7}"
-          COMMIT_MESSAGE="$(git log -1 --pretty=%s "$SHA" | tr '\n' ' ' | sed 's/[[:space:]]\+/ /g' | sed 's/^ //; s/ $//')"
+          COMMIT_MESSAGE="$(git log -1 --pretty=%s "$SHA" 2>/dev/null | tr '\n' ' ' | sed 's/[[:space:]]\+/ /g' | sed 's/^ //; s/ $//')"
+          if [ -z "$COMMIT_MESSAGE" ]; then
+            COMMIT_MESSAGE="(commit message unavailable)"
+          fi
 
           CONTENT=$(jq -n \
+            --arg kind "$KIND" \
             --arg repo "$REPO" \
             --arg actor "$ACTOR" \
+            --arg workflow "$WORKFLOW" \
+            --arg branch "$BRANCH" \
             --arg sha "$SHORT_SHA" \
             --arg commit_message "$COMMIT_MESSAGE" \
-            --arg release_name "$RELEASE_NAME" \
-            --arg release_tag "$RELEASE_TAG" \
-            --arg download_url "$DOWNLOAD_URL" \
-            '"New release in **\($repo)** by **\($actor)**\nRelease: **\($release_name)** (\($release_tag))\nCommit: `\($sha)` - \($commit_message)\nLinks: [download](\($download_url))"')
+            --arg url "$URL" \
+            '"\($kind) in **\($repo)** by **\($actor)**\nSource: **\($workflow)**\nBranch: **\($branch)**\nCommit: `\($sha)` - \($commit_message)\nLinks: [details](\($url))"')
 
           curl -sS -X POST \
             -H "Content-Type: application/json" \
