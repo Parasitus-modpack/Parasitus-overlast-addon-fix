@@ -69,7 +69,6 @@ Daily radio broadcasts are triggered in:
 
 Relevant logic:
 
-test commit
 
 - `onWorldTick(...)`
   - checks the overworld once per day near the start of the day
