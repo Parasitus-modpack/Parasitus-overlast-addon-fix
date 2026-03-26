@@ -442,3 +442,11 @@ config.overlast:custom.finalBattleDim.tooltip=Final battle dimension ID. (eg: 0)
 
 #command line
 commands.overlast.usage=Commands usage
+command.overlast.usage=Usage: /overlast <broadcasttest>
+command.overlast.broadcasttest.sent=Sent the OverLast test broadcast.
+command.overlast.broadcasttest.no_players=No players are online to receive the test broadcast.
+
+broadcast.overlast.test.title=EMERGENCY TRANSMISSION
+broadcast.overlast.test.body=Parasite activity is rising nearby. Stay grouped, keep purifier routes clear, and prepare fallback shelters.
+broadcast.overlast.test.footer=Click here to suggest /overlast broadcasttest again.
+broadcast.overlast.test.hover=Suggest the broadcast test command

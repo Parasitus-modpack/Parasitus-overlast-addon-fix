@@ -6,7 +6,11 @@ import com.dhanantry.scapeandrunparasites.init.SRPPotions;
 import com.overlast.OverLast;
 import com.overlast.gui.RenderHUD;
 import com.overlast.lib.ModMobEffects;
+import com.overlast.util.Broadcasts;
 import com.overlast.util.client.KeyBinds;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.BlockStone;
@@ -15,12 +19,15 @@ import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -28,6 +35,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @EventBusSubscriber(modid = OverLast.MOD_ID)
 public class EventHandlerServer {
 
+    private static final int DAILY_MESSAGE_COUNT = 57;
+    private static final int DAY_START_WINDOW_TICKS = 200;
+    private static final Map<Integer, Long> lastBroadcastDayByDimension = new HashMap<Integer, Long>();
+    private static final Random RANDOM = new Random();
     private static int updateTimer = 0;
 
     @SideOnly(Side.CLIENT)
@@ -57,6 +68,29 @@ public class EventHandlerServer {
             if(origBlock == Blocks.DIAMOND_ORE || origBlock == Blocks.COAL_ORE || origBlock == Blocks.LAPIS_ORE || origBlock == Blocks.EMERALD_ORE || origBlock == Blocks.QUARTZ_ORE || origBlock == Blocks.QUARTZ_ORE)
                 e.getDrops().get(0).grow(1);
         }
+    }
+
+    @SubscribeEvent
+    public static void onWorldTick(TickEvent.WorldTickEvent event) {
+        if (event.phase != TickEvent.Phase.END || event.world.isRemote) {
+            return;
+        }
+        if (event.world.provider.getDimension() != 0 || event.world.getMinecraftServer() == null) {
+            return;
+        }
+
+        long day = event.world.getWorldTime() / 24000L;
+        long dayTime = event.world.getWorldTime() % 24000L;
+        Long lastBroadcastDay = lastBroadcastDayByDimension.get(Integer.valueOf(event.world.provider.getDimension()));
+        if (lastBroadcastDay != null && lastBroadcastDay.longValue() == day) {
+            return;
+        }
+        if (dayTime >= DAY_START_WINDOW_TICKS || event.world.playerEntities.isEmpty()) {
+            return;
+        }
+
+        lastBroadcastDayByDimension.put(Integer.valueOf(event.world.provider.getDimension()), Long.valueOf(day));
+        broadcastDailyMessage(event.world.getMinecraftServer());
     }
 
 
@@ -189,5 +223,14 @@ public class EventHandlerServer {
                 }
             }
         }
+    }
+
+    private static void broadcastDailyMessage(net.minecraft.server.MinecraftServer server) {
+        int messageIndex = RANDOM.nextInt(DAILY_MESSAGE_COUNT);
+        Broadcasts.sendNews(
+                server,
+                new TextComponentString("RADIO DOOM"),
+                new TextComponentTranslation("message.seasons.daily" + messageIndex),
+                null);
     }
 }
