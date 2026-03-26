@@ -45,7 +45,7 @@ public class BlockBlockPurifier
         if (head.getItem() != Items.AIR) return flag;
 
             worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
-            ParasiteEventWorld.killBiome(worldIn, pos, 16);
+            ParasiteEventWorld.killBiome(worldIn, pos);
             int distanceY = pos.getY();
             for (int y = 0; y <= 255; y++) {
                 for (int x = -16; x <= 16; x++) {
@@ -79,7 +79,7 @@ public class BlockBlockPurifier
                 }
             }
             for (int i = 0; i <= 3; i++) {
-                SRPMain.network.sendToAll((IMessage) new SRPPacketParticle(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 0.5F, 0.5F, (byte) 4));
+                SRPMain.network.sendToAll((IMessage) new SRPPacketParticle(pos, 0.5F, 0.5F));
             }
         return flag;
     }
@@ -88,11 +88,11 @@ public class BlockBlockPurifier
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (worldIn.isRemote)
             return;
-        ParasiteEventWorld.killBiome(worldIn, pos, 16);
+        ParasiteEventWorld.killBiome(worldIn, pos);
         worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 
         for (int i = 0; i <= 3; i++)
-            SRPMain.network.sendToAll((IMessage) new SRPPacketParticle(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 0.5F, 0.5F, (byte) 4));
+            SRPMain.network.sendToAll((IMessage) new SRPPacketParticle(pos, 0.5F, 0.5F));
     }
 }
 
