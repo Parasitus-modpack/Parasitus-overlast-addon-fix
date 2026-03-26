@@ -66,5 +66,9 @@ jobs:
           tag_name: ${{ steps.vars.outputs.tag }}
           name: Release ${{ steps.vars.outputs.tag }}
           target_commitish: ${{ github.sha }}
+          body: |
+            Triggering commit:
+            ${{ github.event.head_commit.message }}
+
           generate_release_notes: true
           files: release-assets/*.jar
