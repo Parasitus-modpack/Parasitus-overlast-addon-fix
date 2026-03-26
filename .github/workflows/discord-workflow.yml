@@ -1,0 +1,55 @@
+name: Discord Notifications
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Send release notification to Discord
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          REPO: ${{ github.repository }}
+          ACTOR: ${{ github.event.release.author.login || github.actor }}
+          SHA: ${{ github.sha }}
+          RELEASE_NAME: ${{ github.event.release.name || 'Manual workflow run' }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || '' }}
+          DOWNLOAD_URL: ${{ github.event.release.html_url || '' }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK" ]; then
+            echo "DISCORD_WEBHOOK secret is not set"
+            exit 1
+          fi
+
+          if [ -z "$DOWNLOAD_URL" ]; then
+            DOWNLOAD_URL="https://github.com/$REPO/releases/latest"
+          fi
+
+          if [ -z "$RELEASE_TAG" ]; then
+            RELEASE_TAG="latest"
+          fi
+
+          SHORT_SHA="${SHA:0:7}"
+          COMMIT_MESSAGE="$(git log -1 --pretty=%s "$SHA" | tr '\n' ' ' | sed 's/[[:space:]]\+/ /g' | sed 's/^ //; s/ $//')"
+
+          CONTENT=$(jq -n \
+            --arg repo "$REPO" \
+            --arg actor "$ACTOR" \
+            --arg sha "$SHORT_SHA" \
+            --arg commit_message "$COMMIT_MESSAGE" \
+            --arg release_name "$RELEASE_NAME" \
+            --arg release_tag "$RELEASE_TAG" \
+            --arg download_url "$DOWNLOAD_URL" \
+            '"New release in **\($repo)** by **\($actor)**\nRelease: **\($release_name)** (\($release_tag))\nCommit: `\($sha)` - \($commit_message)\nLinks: [download](\($download_url))"')
+
+          curl -sS -X POST \
+            -H "Content-Type: application/json" \
+            -d "{\"content\":$CONTENT}" \
+            "$DISCORD_WEBHOOK"

@@ -4,6 +4,7 @@ import com.dhanantry.scapeandrunparasites.init.SRPPotions;
 import com.dhanantry.scapeandrunparasites.util.config.SRPConfigSystems;
 import com.dhanantry.scapeandrunparasites.world.SRPSaveData;
 import com.overlast.lib.ModMobEffects;
+import com.overlast.handlers.EventHandlerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
@@ -50,6 +51,7 @@ public class CapEvents {
 			OverPackets.net.sendTo(msgGui, (EntityPlayerMP) player);
 
 		}
+		player.sendMessage(EventHandlerServer.createSeasonDayMessage(player.getEntityWorld(), "message.seasons.login"));
 		switch (phase) {
 			case 3:
 				evopoint = (SRPConfigSystems.phaseKillsFour-SRPConfigSystems.phaseKillsThree)/4000;
