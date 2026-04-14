@@ -32,16 +32,16 @@ public final class Broadcasts {
             }
             player.sendMessage(createHeader());
             if (intro != null) {
-                player.sendMessage(createLine(intro, TextFormatting.GRAY, false));
+                player.sendMessage(createLine(intro, TextFormatting.BLUE, false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, TextFormatting.AQUA, false));
+                player.sendMessage(createLine(weather, TextFormatting.GRAY, true));
             }
             if (main != null) {
                 player.sendMessage(createLine(main, TextFormatting.YELLOW, false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true, false));
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, false));
             }
         }
     }
@@ -55,16 +55,16 @@ public final class Broadcasts {
             }
             player.sendMessage(createHeader());
             if (intro != null) {
-                player.sendMessage(createLine(intro, TextFormatting.GRAY, false));
+                player.sendMessage(createLine(intro, TextFormatting.BLUE, false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, TextFormatting.AQUA, false));
+                player.sendMessage(createLine(weather, TextFormatting.GRAY, true));
             }
             if (main != null) {
                 player.sendMessage(createLine(main, TextFormatting.YELLOW, false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true, false));
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, false));
             }
         }
     }
@@ -81,16 +81,16 @@ public final class Broadcasts {
             }
             player.sendMessage(createHeader());
             if (intro != null) {
-                player.sendMessage(createLine(intro, TextFormatting.GRAY, false));
+                player.sendMessage(createLine(intro, TextFormatting.BLUE, false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, TextFormatting.AQUA, false));
+                player.sendMessage(createLine(weather, TextFormatting.GRAY, true));
             }
             if (main != null) {
                 player.sendMessage(createLine(main, TextFormatting.YELLOW, false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true, false));
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, false));
             }
         }
     }

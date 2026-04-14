@@ -1,5 +1,5 @@
 {
-  "last_turn_at": "2026-04-14T16:17:29.295Z",
-  "turn_count": 1,
-  "last_agent_output": "Changed the broadcast formatting in [Broadcasts.java](C:\\Users\\suiseika\\Parasites-Addon-OverLast\\jav"
+  "last_turn_at": "2026-04-14T17:05:35.642Z",
+  "turn_count": 4,
+  "last_agent_output": "Broadcast formatting is now:\n\n- 1st line blue\n- 2nd line gray italic\n- 3rd line yellow non-italic\n- "
 }
