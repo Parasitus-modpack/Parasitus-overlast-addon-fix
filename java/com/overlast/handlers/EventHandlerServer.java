@@ -8,8 +8,6 @@ import com.overlast.gui.RenderHUD;
 import com.overlast.lib.ModMobEffects;
 import com.overlast.util.Broadcasts;
 import com.overlast.util.client.KeyBinds;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
@@ -37,12 +35,12 @@ public class EventHandlerServer {
 
     private static final int FORECAST_MESSAGE_COUNT = 10;
     private static final int DAILY_MESSAGE_COUNT = 58;
-    private static final int SEASON_LENGTH_DAYS = 8;
+    private static final int DAY_START_WINDOW_TICKS = 1200;
+    private static final int SEASON_LENGTH_DAYS = 10;
     private static final int SPRING_OUTRO_COUNT = 9;
     private static final int SUMMER_OUTRO_COUNT = 9;
     private static final int FALL_OUTRO_COUNT = 10;
     private static final int WINTER_OUTRO_COUNT = 9;
-    private static final Map<Integer, Long> lastBroadcastDayByDimension = new HashMap<Integer, Long>();
     private static final Random RANDOM = new Random();
     private static int updateTimer = 0;
 
@@ -84,16 +82,15 @@ public class EventHandlerServer {
             return;
         }
 
-        long day = event.world.getWorldTime() / 24000L;
-        Long lastBroadcastDay = lastBroadcastDayByDimension.get(Integer.valueOf(event.world.provider.getDimension()));
-        if (lastBroadcastDay != null && lastBroadcastDay.longValue() == day) {
-            return;
-        }
-        if (event.world.playerEntities.isEmpty()) {
+        SeasonCalendarData calendar = SeasonCalendarData.get(event.world);
+        calendar.updateFromWorld(event.world);
+
+        long dayTime = Math.floorMod(event.world.getWorldTime(), 24000L);
+        if (dayTime >= DAY_START_WINDOW_TICKS || event.world.playerEntities.isEmpty() || calendar.hasBroadcastForCurrentDay()) {
             return;
         }
 
-        lastBroadcastDayByDimension.put(Integer.valueOf(event.world.provider.getDimension()), Long.valueOf(day));
+        calendar.markBroadcastSent();
         broadcastDailyMessage(event.world.getMinecraftServer());
     }
 
@@ -255,23 +252,23 @@ public class EventHandlerServer {
     }
 
     public static TextComponentTranslation createSeasonDayMessage(net.minecraft.world.World world, String key) {
-        long worldDay = world.getWorldTime() / 24000L;
-        return new TextComponentTranslation(key, new TextComponentTranslation(getSeasonTranslationKey(worldDay)),
-                Integer.valueOf(getDayInSeason(worldDay)));
+        long elapsedDays = getElapsedDays(world);
+        return new TextComponentTranslation(key, new TextComponentTranslation(getSeasonTranslationKey(elapsedDays)),
+                Integer.valueOf(getDayInSeason(elapsedDays)));
     }
 
     private static TextComponentTranslation createForecastMessage(net.minecraft.world.World world, int forecastIndex) {
-        long worldDay = world.getWorldTime() / 24000L;
-        TextComponentTranslation season = new TextComponentTranslation(getSeasonTranslationKey(worldDay));
-        Integer dayInSeason = Integer.valueOf(getDayInSeason(worldDay));
+        long elapsedDays = getElapsedDays(world);
+        TextComponentTranslation season = new TextComponentTranslation(getSeasonTranslationKey(elapsedDays));
+        Integer dayInSeason = Integer.valueOf(getDayInSeason(elapsedDays));
         if (forecastIndex == 3) {
             return new TextComponentTranslation("message.seasons.forecast3", dayInSeason, season);
         }
         return new TextComponentTranslation("message.seasons.forecast" + forecastIndex, season, dayInSeason);
     }
 
-    public static String getSeasonTranslationKey(long worldDay) {
-        int seasonIndex = getSeasonIndex(worldDay);
+    public static String getSeasonTranslationKey(long elapsedDays) {
+        int seasonIndex = getSeasonIndex(elapsedDays);
         switch (seasonIndex) {
             case 0:
                 return "message.seasons.spring";
@@ -285,17 +282,17 @@ public class EventHandlerServer {
         }
     }
 
-    public static int getDayInSeason(long worldDay) {
-        return (int) (worldDay % SEASON_LENGTH_DAYS) + 1;
+    public static int getDayInSeason(long elapsedDays) {
+        return (int) ((Math.max(1L, elapsedDays) - 1L) % SEASON_LENGTH_DAYS) + 1;
     }
 
-    private static int getSeasonIndex(long worldDay) {
-        return (int) ((worldDay / SEASON_LENGTH_DAYS) % 4L);
+    private static int getSeasonIndex(long elapsedDays) {
+        return (int) (((Math.max(1L, elapsedDays) - 1L) / SEASON_LENGTH_DAYS) % 4L);
     }
 
     public static TextComponentTranslation getSeasonalOutroMessage(net.minecraft.world.World world) {
-        long worldDay = world.getWorldTime() / 24000L;
-        switch (getSeasonIndex(worldDay)) {
+        long elapsedDays = getElapsedDays(world);
+        switch (getSeasonIndex(elapsedDays)) {
             case 0:
                 return new TextComponentTranslation("message.seasons.dailySpring" + RANDOM.nextInt(SPRING_OUTRO_COUNT));
             case 1:
@@ -306,5 +303,11 @@ public class EventHandlerServer {
             default:
                 return new TextComponentTranslation("message.seasons.dailyWinter" + RANDOM.nextInt(WINTER_OUTRO_COUNT));
         }
+    }
+
+    private static long getElapsedDays(net.minecraft.world.World world) {
+        SeasonCalendarData calendar = SeasonCalendarData.get(world);
+        calendar.updateFromWorld(world);
+        return calendar.getElapsedDays();
     }
 }

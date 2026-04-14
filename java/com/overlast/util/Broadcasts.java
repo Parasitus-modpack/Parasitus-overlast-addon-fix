@@ -36,7 +36,7 @@ public final class Broadcasts {
                 player.sendMessage(createLine(intro, getIntroColor(), false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, getWeatherColor(), true));
+                player.sendMessage(createLine(weather, getWeatherColor(), false, false));
             }
             if (main != null) {
                 player.sendMessage(createLine(main, getMainColor(), false));
@@ -59,7 +59,7 @@ public final class Broadcasts {
                 player.sendMessage(createLine(intro, getIntroColor(), false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, getWeatherColor(), true));
+                player.sendMessage(createLine(weather, getWeatherColor(), false, false));
             }
             if (main != null) {
                 player.sendMessage(createLine(main, getMainColor(), false));
@@ -85,7 +85,7 @@ public final class Broadcasts {
                 player.sendMessage(createLine(intro, getIntroColor(), false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, getWeatherColor(), true));
+                player.sendMessage(createLine(weather, getWeatherColor(), false, false));
             }
             if (main != null) {
                 player.sendMessage(createLine(main, getMainColor(), false));
@@ -156,7 +156,7 @@ public final class Broadcasts {
     }
 
     private static TextFormatting getIntroColor() {
-        return resolveColor(OverConfig.BROADCAST.introColor, TextFormatting.BLUE);
+        return resolveColor(OverConfig.BROADCAST.introColor, TextFormatting.GOLD);
     }
 
     private static TextFormatting getWeatherColor() {
