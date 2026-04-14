@@ -7,4 +7,8 @@ public class Client {
 
     @Config.LangKey("config.overlast:client.barPos")
     public String barPositions = "top left";
+
+    @Config.LangKey("config.overlast:client.evolutionTextYOffset")
+    @Config.RangeInt(min = -200, max = 200)
+    public int evolutionTextYOffset = 0;
 }

@@ -123,9 +123,9 @@ public final class Broadcasts {
 
     private static ITextComponent createHeader() {
         TextComponentString header = new TextComponentString("");
-        header.appendSibling(styled("========== ", TextFormatting.DARK_GRAY, false));
+        header.appendSibling(styled("========== ", TextFormatting.GOLD, false));
         header.appendSibling(styled("[Incoming Transmission]", TextFormatting.GOLD, true));
-        header.appendSibling(styled(" ==========", TextFormatting.DARK_GRAY, false));
+        header.appendSibling(styled(" ==========", TextFormatting.GOLD, false));
         return header;
     }
 

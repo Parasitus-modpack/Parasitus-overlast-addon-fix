@@ -372,6 +372,8 @@ config.overlast:client.Xoffset=UI Bar Horizontal Offset
 config.overlast:client.Xoffset.tooltip=When set to greater than 0, the UI bar will be offset to the right, \nand when set to less than 0, the UI bar will be offset to the left.
 config.overlast:client.Yoffset=UI Bar Vertical Offset
 config.overlast:client.Yoffset.tooltip=When set to greater than 0, the UI bar will be offset to the bottom, \n and when set to less than 0, the UI bar will be offset to the top.
+config.overlast:client.evolutionTextYOffset=Evolution Number Vertical Offset
+config.overlast:client.evolutionTextYOffset.tooltip=Adjusts the height of the evolution numbers text. Positive moves it downward, negative moves it upward.
 
 overlast.mechanics=Mechanics
 overlast.mechanics.tooltip=Settings with the main player mechanics

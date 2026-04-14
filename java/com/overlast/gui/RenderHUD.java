@@ -123,9 +123,9 @@ public class RenderHUD extends Gui {
 		int textX = left + ((fullWidth - textWidth) / 2);
 		textX = Math.max(HUD_MARGIN, Math.min(textX, screenWidth - textWidth - HUD_MARGIN));
 
-		int textY = top - mc.fontRenderer.FONT_HEIGHT - PROGRESS_TEXT_GAP;
+		int textY = top - mc.fontRenderer.FONT_HEIGHT - PROGRESS_TEXT_GAP + OverConfig.CLIENT.evolutionTextYOffset;
 		if (textY < HUD_MARGIN) {
-			textY = top + fullHeight + PROGRESS_TEXT_GAP;
+			textY = top + fullHeight + PROGRESS_TEXT_GAP + OverConfig.CLIENT.evolutionTextYOffset;
 		}
 
 		mc.fontRenderer.drawStringWithShadow(progressText, textX, textY, 0xFFFFFF);
