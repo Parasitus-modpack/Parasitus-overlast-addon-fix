@@ -17,7 +17,7 @@ public class RenderHUD extends Gui {
 	private static final int HUD_MARGIN = 8;
 	private static final int HUD_SPACING = 8;
 	private static final int PROGRESS_TEXT_GAP = 2;
-	private static final int MAX_TEXTURE_PHASE = 8;
+	private static final int MAX_TEXTURE_PHASE = 10;
 
 	//索引值
 	private static int EvoIndex=1;
