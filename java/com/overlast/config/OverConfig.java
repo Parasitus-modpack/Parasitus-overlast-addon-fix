@@ -24,6 +24,9 @@ public class OverConfig {
 	@Config.Name("mechanics")
 	public static final Mechanics MECHANICS = new Mechanics();
 
+	@Config.Name("broadcast")
+	public static final Broadcast BROADCAST = new Broadcast();
+
 
 
 	// This deals with changed the config values in Forge's GUI in-game.

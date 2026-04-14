@@ -402,6 +402,23 @@ config.overlast:mechanics.parasiticScale.tooltip=The rate of parasitic change, b
 config.overlast:mechanics.enableRadio=Enable Radio?
 config.overlast:mechanics.enableRadio.tooltip=For the features provided by the modpacks, the modpacks author is able to customize the radio text through the resource pack.
 
+overlast.broadcast=Broadcast
+overlast.broadcast.tooltip=Broadcast chat styling settings
+config.overlast:broadcast.headerFrameColor=Broadcast Header Frame Color
+config.overlast:broadcast.headerFrameColor.tooltip=Color name for the ========== frame. Allowed colors: black, dark_blue, dark_green, dark_aqua, dark_red, dark_purple, gold, gray, dark_gray, blue, green, aqua, red, light_purple, yellow, white.
+config.overlast:broadcast.headerTitleColor=Broadcast Header Title Color
+config.overlast:broadcast.headerTitleColor.tooltip=Color name for the [Incoming Transmission] title. Allowed colors: black, dark_blue, dark_green, dark_aqua, dark_red, dark_purple, gold, gray, dark_gray, blue, green, aqua, red, light_purple, yellow, white.
+config.overlast:broadcast.linePrefixColor=Broadcast Prefix Color
+config.overlast:broadcast.linePrefixColor.tooltip=Color name for the > prefix shown on intro, weather, and main lines. Allowed colors: black, dark_blue, dark_green, dark_aqua, dark_red, dark_purple, gold, gray, dark_gray, blue, green, aqua, red, light_purple, yellow, white.
+config.overlast:broadcast.introColor=Broadcast Intro Color
+config.overlast:broadcast.introColor.tooltip=Color name for the first broadcast line. Allowed colors: black, dark_blue, dark_green, dark_aqua, dark_red, dark_purple, gold, gray, dark_gray, blue, green, aqua, red, light_purple, yellow, white.
+config.overlast:broadcast.weatherColor=Broadcast Second Line Color
+config.overlast:broadcast.weatherColor.tooltip=Color name for the second broadcast line. Allowed colors: black, dark_blue, dark_green, dark_aqua, dark_red, dark_purple, gold, gray, dark_gray, blue, green, aqua, red, light_purple, yellow, white.
+config.overlast:broadcast.mainColor=Broadcast Main Color
+config.overlast:broadcast.mainColor.tooltip=Color name for the third broadcast line. Allowed colors: black, dark_blue, dark_green, dark_aqua, dark_red, dark_purple, gold, gray, dark_gray, blue, green, aqua, red, light_purple, yellow, white.
+config.overlast:broadcast.outroColor=Broadcast Outro Color
+config.overlast:broadcast.outroColor.tooltip=Color name for the fourth broadcast line. Allowed colors: black, dark_blue, dark_green, dark_aqua, dark_red, dark_purple, gold, gray, dark_gray, blue, green, aqua, red, light_purple, yellow, white.
+
 overlast.seasons=Seasons
 config.overlast:seasons.enableSeasons=Enable Seasons?
 config.overlast:seasons.enableSeasons.tooltip=Whether to enable the Seasons, will affect the ambient temperature and leaf color.

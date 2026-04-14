@@ -3,6 +3,7 @@ package com.overlast.util;
 import java.util.List;
 import java.util.Objects;
 
+import com.overlast.config.OverConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,16 +33,16 @@ public final class Broadcasts {
             }
             player.sendMessage(createHeader());
             if (intro != null) {
-                player.sendMessage(createLine(intro, TextFormatting.BLUE, false));
+                player.sendMessage(createLine(intro, getIntroColor(), false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, TextFormatting.GRAY, true));
+                player.sendMessage(createLine(weather, getWeatherColor(), true));
             }
             if (main != null) {
-                player.sendMessage(createLine(main, TextFormatting.YELLOW, false));
+                player.sendMessage(createLine(main, getMainColor(), false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, false));
+                player.sendMessage(createLine(outro, getOutroColor(), false, false));
             }
         }
     }
@@ -55,16 +56,16 @@ public final class Broadcasts {
             }
             player.sendMessage(createHeader());
             if (intro != null) {
-                player.sendMessage(createLine(intro, TextFormatting.BLUE, false));
+                player.sendMessage(createLine(intro, getIntroColor(), false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, TextFormatting.GRAY, true));
+                player.sendMessage(createLine(weather, getWeatherColor(), true));
             }
             if (main != null) {
-                player.sendMessage(createLine(main, TextFormatting.YELLOW, false));
+                player.sendMessage(createLine(main, getMainColor(), false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, false));
+                player.sendMessage(createLine(outro, getOutroColor(), false, false));
             }
         }
     }
@@ -81,16 +82,16 @@ public final class Broadcasts {
             }
             player.sendMessage(createHeader());
             if (intro != null) {
-                player.sendMessage(createLine(intro, TextFormatting.BLUE, false));
+                player.sendMessage(createLine(intro, getIntroColor(), false));
             }
             if (weather != null) {
-                player.sendMessage(createLine(weather, TextFormatting.GRAY, true));
+                player.sendMessage(createLine(weather, getWeatherColor(), true));
             }
             if (main != null) {
-                player.sendMessage(createLine(main, TextFormatting.YELLOW, false));
+                player.sendMessage(createLine(main, getMainColor(), false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, false, false));
+                player.sendMessage(createLine(outro, getOutroColor(), false, false));
             }
         }
     }
@@ -123,9 +124,9 @@ public final class Broadcasts {
 
     private static ITextComponent createHeader() {
         TextComponentString header = new TextComponentString("");
-        header.appendSibling(styled("========== ", TextFormatting.GOLD, false));
-        header.appendSibling(styled("[Incoming Transmission]", TextFormatting.GOLD, true));
-        header.appendSibling(styled(" ==========", TextFormatting.GOLD, false));
+        header.appendSibling(styled("========== ", getHeaderFrameColor(), false));
+        header.appendSibling(styled("[Incoming Transmission]", getHeaderTitleColor(), true));
+        header.appendSibling(styled(" ==========", getHeaderFrameColor(), false));
         return header;
     }
 
@@ -136,10 +137,51 @@ public final class Broadcasts {
     private static ITextComponent createLine(ITextComponent text, TextFormatting color, boolean italic, boolean showPrefix) {
         TextComponentString line = new TextComponentString("");
         if (showPrefix) {
-            line.appendSibling(styled("> ", TextFormatting.DARK_GRAY, false));
+            line.appendSibling(styled("> ", getLinePrefixColor(), false));
         }
         line.appendSibling(text.createCopy().setStyle(new Style().setColor(color).setBold(false).setItalic(italic)));
         return line;
+    }
+
+    private static TextFormatting getHeaderFrameColor() {
+        return resolveColor(OverConfig.BROADCAST.headerFrameColor, TextFormatting.GOLD);
+    }
+
+    private static TextFormatting getHeaderTitleColor() {
+        return resolveColor(OverConfig.BROADCAST.headerTitleColor, TextFormatting.GOLD);
+    }
+
+    private static TextFormatting getLinePrefixColor() {
+        return resolveColor(OverConfig.BROADCAST.linePrefixColor, TextFormatting.DARK_GRAY);
+    }
+
+    private static TextFormatting getIntroColor() {
+        return resolveColor(OverConfig.BROADCAST.introColor, TextFormatting.BLUE);
+    }
+
+    private static TextFormatting getWeatherColor() {
+        return resolveColor(OverConfig.BROADCAST.weatherColor, TextFormatting.GRAY);
+    }
+
+    private static TextFormatting getMainColor() {
+        return resolveColor(OverConfig.BROADCAST.mainColor, TextFormatting.YELLOW);
+    }
+
+    private static TextFormatting getOutroColor() {
+        return resolveColor(OverConfig.BROADCAST.outroColor, TextFormatting.YELLOW);
+    }
+
+    private static TextFormatting resolveColor(String configuredColor, TextFormatting fallback) {
+        if (configuredColor == null || configuredColor.trim().isEmpty()) {
+            return fallback;
+        }
+
+        TextFormatting parsed = TextFormatting.getValueByName(configuredColor.trim());
+        if (parsed == null || !parsed.isColor()) {
+            return fallback;
+        }
+
+        return parsed;
     }
 
     private static TextComponentString styled(String text, TextFormatting color, boolean bold) {
