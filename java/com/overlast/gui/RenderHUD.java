@@ -16,7 +16,8 @@ public class RenderHUD extends Gui {
 
 	private static final int HUD_MARGIN = 8;
 	private static final int HUD_SPACING = 8;
-	private static final int PHASE_TEXT_GAP = 4;
+	private static final int PROGRESS_TEXT_GAP = 2;
+	private static final int MAX_TEXTURE_PHASE = 8;
 
 	//索引值
 	private static int EvoIndex=1;
@@ -49,9 +50,11 @@ public class RenderHUD extends Gui {
 			case 6:EVOLUTION_BAR.setMaxValue(SRPConfigSystems.phaseKillsSeven);break;
 			case 7:
 			case 8:
+			case 9:
+			case 10:
 				EVOLUTION_BAR.setMaxValue(SRPConfigSystems.phaseKillsEight);break;
 		}
-		EVOLUTION_BAR.setTexture(new ResourceLocation(OverLast.MOD_ID, "textures/gui/evolutionbar"+EvoIndex+".png"));
+		EVOLUTION_BAR.setTexture(new ResourceLocation(OverLast.MOD_ID, "textures/gui/evolutionbar" + getTexturePhase(phase) + ".png"));
 	}
 
 	//最终渲染层
@@ -115,19 +118,25 @@ public class RenderHUD extends Gui {
 	}
 
 	private void drawPhaseProgress(Minecraft mc, int screenWidth, int left, int top, int fullWidth, int fullHeight, StatBar bar) {
-		String progressText = "Phase " + EvoIndex + ": " + bar.getTextToDisplay();
+		String progressText = bar.getTextToDisplay();
 		int textWidth = mc.fontRenderer.getStringWidth(progressText);
-		String barPosition = getBarPosition();
+		int textX = left + ((fullWidth - textWidth) / 2);
+		textX = Math.max(HUD_MARGIN, Math.min(textX, screenWidth - textWidth - HUD_MARGIN));
 
-		int textX;
-		if (barPosition.endsWith("left")) {
-			textX = left + fullWidth + PHASE_TEXT_GAP;
-		} else {
-			textX = left - textWidth - PHASE_TEXT_GAP;
+		int textY = top - mc.fontRenderer.FONT_HEIGHT - PROGRESS_TEXT_GAP;
+		if (textY < HUD_MARGIN) {
+			textY = top + fullHeight + PROGRESS_TEXT_GAP;
 		}
 
-		int textY = top + (fullHeight / 2) - (mc.fontRenderer.FONT_HEIGHT / 2);
 		mc.fontRenderer.drawStringWithShadow(progressText, textX, textY, 0xFFFFFF);
+	}
+
+	private static int getTexturePhase(int phase) {
+		if (phase <= -1) {
+			return -1;
+		}
+
+		return Math.min(phase, MAX_TEXTURE_PHASE);
 	}
 
 	

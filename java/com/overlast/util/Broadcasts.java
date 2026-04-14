@@ -38,10 +38,10 @@ public final class Broadcasts {
                 player.sendMessage(createLine(weather, TextFormatting.AQUA, false));
             }
             if (main != null) {
-                player.sendMessage(createLine(main, TextFormatting.WHITE, false));
+                player.sendMessage(createLine(main, TextFormatting.YELLOW, false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true));
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true, false));
             }
         }
     }
@@ -61,10 +61,10 @@ public final class Broadcasts {
                 player.sendMessage(createLine(weather, TextFormatting.AQUA, false));
             }
             if (main != null) {
-                player.sendMessage(createLine(main, TextFormatting.WHITE, false));
+                player.sendMessage(createLine(main, TextFormatting.YELLOW, false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true));
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true, false));
             }
         }
     }
@@ -87,10 +87,10 @@ public final class Broadcasts {
                 player.sendMessage(createLine(weather, TextFormatting.AQUA, false));
             }
             if (main != null) {
-                player.sendMessage(createLine(main, TextFormatting.WHITE, false));
+                player.sendMessage(createLine(main, TextFormatting.YELLOW, false));
             }
             if (outro != null) {
-                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true));
+                player.sendMessage(createLine(outro, TextFormatting.YELLOW, true, false));
             }
         }
     }
@@ -130,8 +130,14 @@ public final class Broadcasts {
     }
 
     private static ITextComponent createLine(ITextComponent text, TextFormatting color, boolean italic) {
+        return createLine(text, color, italic, true);
+    }
+
+    private static ITextComponent createLine(ITextComponent text, TextFormatting color, boolean italic, boolean showPrefix) {
         TextComponentString line = new TextComponentString("");
-        line.appendSibling(styled("> ", TextFormatting.DARK_GRAY, false));
+        if (showPrefix) {
+            line.appendSibling(styled("> ", TextFormatting.DARK_GRAY, false));
+        }
         line.appendSibling(text.createCopy().setStyle(new Style().setColor(color).setBold(false).setItalic(italic)));
         return line;
     }
