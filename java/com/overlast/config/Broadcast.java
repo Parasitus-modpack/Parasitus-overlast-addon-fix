@@ -22,7 +22,7 @@ public class Broadcast {
 
     @Config.Comment(COLOR_COMMENT)
     @Config.LangKey("config.overlast:broadcast.introColor")
-    public String introColor = "blue";
+    public String introColor = "gold";
 
     @Config.Comment(COLOR_COMMENT)
     @Config.LangKey("config.overlast:broadcast.weatherColor")

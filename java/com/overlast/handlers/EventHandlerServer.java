@@ -37,7 +37,6 @@ public class EventHandlerServer {
 
     private static final int FORECAST_MESSAGE_COUNT = 10;
     private static final int DAILY_MESSAGE_COUNT = 58;
-    private static final int DAY_START_WINDOW_TICKS = 200;
     private static final int SEASON_LENGTH_DAYS = 8;
     private static final int SPRING_OUTRO_COUNT = 9;
     private static final int SUMMER_OUTRO_COUNT = 9;
@@ -86,12 +85,11 @@ public class EventHandlerServer {
         }
 
         long day = event.world.getWorldTime() / 24000L;
-        long dayTime = event.world.getWorldTime() % 24000L;
         Long lastBroadcastDay = lastBroadcastDayByDimension.get(Integer.valueOf(event.world.provider.getDimension()));
         if (lastBroadcastDay != null && lastBroadcastDay.longValue() == day) {
             return;
         }
-        if (dayTime >= DAY_START_WINDOW_TICKS || event.world.playerEntities.isEmpty()) {
+        if (event.world.playerEntities.isEmpty()) {
             return;
         }
 

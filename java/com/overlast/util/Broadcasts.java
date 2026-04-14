@@ -176,12 +176,22 @@ public final class Broadcasts {
             return fallback;
         }
 
-        TextFormatting parsed = TextFormatting.getValueByName(configuredColor.trim());
-        if (parsed == null || !parsed.isColor()) {
-            return fallback;
+        String normalized = normalizeColorName(configuredColor);
+        for (TextFormatting formatting : TextFormatting.values()) {
+            if (!formatting.isColor()) {
+                continue;
+            }
+            if (normalizeColorName(formatting.getFriendlyName()).equals(normalized)
+                    || normalizeColorName(formatting.name()).equals(normalized)) {
+                return formatting;
+            }
         }
 
-        return parsed;
+        return fallback;
+    }
+
+    private static String normalizeColorName(String value) {
+        return value == null ? "" : value.trim().toLowerCase().replace("_", "").replace("-", "").replace(" ", "");
     }
 
     private static TextComponentString styled(String text, TextFormatting color, boolean bold) {
