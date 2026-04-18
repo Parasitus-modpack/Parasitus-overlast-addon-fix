@@ -30,3 +30,5 @@ tmp-wrapper-build/
 Thumbs.db
 bin
 .omx
+.agents
+.omx

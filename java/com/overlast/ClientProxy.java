@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import com.overlast.gui.RenderHUD;
 import com.overlast.util.client.ModelRegisterer;
+import com.overlast.util.client.SeasonColorHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class ClientProxy extends CommonProxy {
@@ -25,6 +26,7 @@ public class ClientProxy extends CommonProxy {
 		
 		// Register models.
 		MinecraftForge.EVENT_BUS.register(new ModelRegisterer());
+		MinecraftForge.EVENT_BUS.register(new SeasonColorHandler());
 		KeyBinds.register();
 	}
 	

@@ -4,6 +4,7 @@ import com.dhanantry.scapeandrunparasites.entity.ai.misc.EntityPInfected;
 import com.dhanantry.scapeandrunparasites.entity.monster.infected.*;
 import com.dhanantry.scapeandrunparasites.init.SRPPotions;
 import com.overlast.OverLast;
+import com.overlast.config.OverConfig;
 import com.overlast.gui.RenderHUD;
 import com.overlast.lib.ModMobEffects;
 import com.overlast.util.Broadcasts;
@@ -36,7 +37,6 @@ public class EventHandlerServer {
     private static final int FORECAST_MESSAGE_COUNT = 10;
     private static final int DAILY_MESSAGE_COUNT = 58;
     private static final int DAY_START_WINDOW_TICKS = 1200;
-    private static final int SEASON_LENGTH_DAYS = 10;
     private static final int SPRING_OUTRO_COUNT = 9;
     private static final int SUMMER_OUTRO_COUNT = 9;
     private static final int FALL_OUTRO_COUNT = 10;
@@ -283,11 +283,38 @@ public class EventHandlerServer {
     }
 
     public static int getDayInSeason(long elapsedDays) {
-        return (int) ((Math.max(1L, elapsedDays) - 1L) % SEASON_LENGTH_DAYS) + 1;
+        long dayInCycle = getDayInSeasonCycle(Math.max(1L, elapsedDays) - 1L);
+        int[] seasonLengths = getSeasonLengths();
+
+        for (int length : seasonLengths) {
+            if (length <= 0) {
+                continue;
+            }
+            if (dayInCycle < length) {
+                return (int) dayInCycle + 1;
+            }
+            dayInCycle -= length;
+        }
+
+        return 1;
     }
 
     private static int getSeasonIndex(long elapsedDays) {
-        return (int) (((Math.max(1L, elapsedDays) - 1L) / SEASON_LENGTH_DAYS) % 4L);
+        long dayInCycle = getDayInSeasonCycle(Math.max(1L, elapsedDays) - 1L);
+        int[] seasonLengths = getSeasonLengths();
+
+        for (int i = 0; i < seasonLengths.length; i++) {
+            int length = seasonLengths[i];
+            if (length <= 0) {
+                continue;
+            }
+            if (dayInCycle < length) {
+                return i;
+            }
+            dayInCycle -= length;
+        }
+
+        return 0;
     }
 
     public static TextComponentTranslation getSeasonalOutroMessage(net.minecraft.world.World world) {
@@ -309,5 +336,39 @@ public class EventHandlerServer {
         SeasonCalendarData calendar = SeasonCalendarData.get(world);
         calendar.updateFromWorld(world);
         return calendar.getElapsedDays();
+    }
+
+    public static int getSeasonIndex(net.minecraft.world.World world) {
+        if (!OverConfig.SEASONS.enableSeasons) {
+            return 0;
+        }
+        return getSeasonIndex(getElapsedDays(world));
+    }
+
+    private static long getDayInSeasonCycle(long zeroBasedElapsedDay) {
+        int cycleLength = getSeasonCycleLength();
+        if (cycleLength <= 0) {
+            return 0L;
+        }
+        return zeroBasedElapsedDay % cycleLength;
+    }
+
+    private static int getSeasonCycleLength() {
+        int total = 0;
+        for (int length : getSeasonLengths()) {
+            if (length > 0) {
+                total += length;
+            }
+        }
+        return total > 0 ? total : 1;
+    }
+
+    private static int[] getSeasonLengths() {
+        return new int[] {
+                OverConfig.SEASONS.springLength,
+                OverConfig.SEASONS.summerLength,
+                OverConfig.SEASONS.autumnLength,
+                OverConfig.SEASONS.winterLength
+        };
     }
 }

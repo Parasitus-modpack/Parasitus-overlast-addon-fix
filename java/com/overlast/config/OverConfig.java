@@ -27,6 +27,9 @@ public class OverConfig {
 	@Config.Name("broadcast")
 	public static final Broadcast BROADCAST = new Broadcast();
 
+	@Config.Name("seasons")
+	public static final Seasons SEASONS = new Seasons();
+
 
 
 	// This deals with changed the config values in Forge's GUI in-game.

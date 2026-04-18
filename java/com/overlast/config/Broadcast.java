@@ -10,11 +10,11 @@ public class Broadcast {
 
     @Config.Comment(COLOR_COMMENT)
     @Config.LangKey("config.overlast:broadcast.headerFrameColor")
-    public String headerFrameColor = "gold";
+    public String headerFrameColor = "white";
 
     @Config.Comment(COLOR_COMMENT)
     @Config.LangKey("config.overlast:broadcast.headerTitleColor")
-    public String headerTitleColor = "gold";
+    public String headerTitleColor = "aqua";
 
     @Config.Comment(COLOR_COMMENT)
     @Config.LangKey("config.overlast:broadcast.linePrefixColor")
@@ -22,7 +22,7 @@ public class Broadcast {
 
     @Config.Comment(COLOR_COMMENT)
     @Config.LangKey("config.overlast:broadcast.introColor")
-    public String introColor = "gold";
+    public String introColor = "green";
 
     @Config.Comment(COLOR_COMMENT)
     @Config.LangKey("config.overlast:broadcast.weatherColor")
@@ -30,9 +30,9 @@ public class Broadcast {
 
     @Config.Comment(COLOR_COMMENT)
     @Config.LangKey("config.overlast:broadcast.mainColor")
-    public String mainColor = "yellow";
+    public String mainColor = "gray";
 
     @Config.Comment(COLOR_COMMENT)
     @Config.LangKey("config.overlast:broadcast.outroColor")
-    public String outroColor = "yellow";
+    public String outroColor = "gray";
 }

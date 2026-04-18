@@ -10,5 +10,5 @@ public class Client {
 
     @Config.LangKey("config.overlast:client.evolutionTextYOffset")
     @Config.RangeInt(min = -200, max = 200)
-    public int evolutionTextYOffset = 0;
+    public int evolutionTextYOffset = 13;
 }

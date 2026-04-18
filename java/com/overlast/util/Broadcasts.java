@@ -35,9 +35,6 @@ public final class Broadcasts {
             if (intro != null) {
                 player.sendMessage(createLine(intro, getIntroColor(), false));
             }
-            if (weather != null) {
-                player.sendMessage(createLine(weather, getWeatherColor(), false, false));
-            }
             if (main != null) {
                 player.sendMessage(createLine(main, getMainColor(), false));
             }
@@ -57,9 +54,6 @@ public final class Broadcasts {
             player.sendMessage(createHeader());
             if (intro != null) {
                 player.sendMessage(createLine(intro, getIntroColor(), false));
-            }
-            if (weather != null) {
-                player.sendMessage(createLine(weather, getWeatherColor(), false, false));
             }
             if (main != null) {
                 player.sendMessage(createLine(main, getMainColor(), false));
@@ -83,9 +77,6 @@ public final class Broadcasts {
             player.sendMessage(createHeader());
             if (intro != null) {
                 player.sendMessage(createLine(intro, getIntroColor(), false));
-            }
-            if (weather != null) {
-                player.sendMessage(createLine(weather, getWeatherColor(), false, false));
             }
             if (main != null) {
                 player.sendMessage(createLine(main, getMainColor(), false));
@@ -125,7 +116,7 @@ public final class Broadcasts {
     private static ITextComponent createHeader() {
         TextComponentString header = new TextComponentString("");
         header.appendSibling(styled("========== ", getHeaderFrameColor(), false));
-        header.appendSibling(styled("[Incoming Transmission]", getHeaderTitleColor(), true));
+        header.appendSibling(styled("[Incoming Transmission]", getHeaderTitleColor(), false));
         header.appendSibling(styled(" ==========", getHeaderFrameColor(), false));
         return header;
     }
@@ -144,11 +135,11 @@ public final class Broadcasts {
     }
 
     private static TextFormatting getHeaderFrameColor() {
-        return resolveColor(OverConfig.BROADCAST.headerFrameColor, TextFormatting.GOLD);
+        return resolveColor(OverConfig.BROADCAST.headerFrameColor, TextFormatting.WHITE);
     }
 
     private static TextFormatting getHeaderTitleColor() {
-        return resolveColor(OverConfig.BROADCAST.headerTitleColor, TextFormatting.GOLD);
+        return resolveColor(OverConfig.BROADCAST.headerTitleColor, TextFormatting.AQUA);
     }
 
     private static TextFormatting getLinePrefixColor() {
@@ -156,7 +147,7 @@ public final class Broadcasts {
     }
 
     private static TextFormatting getIntroColor() {
-        return resolveColor(OverConfig.BROADCAST.introColor, TextFormatting.GOLD);
+        return resolveColor(OverConfig.BROADCAST.introColor, TextFormatting.GREEN);
     }
 
     private static TextFormatting getWeatherColor() {
@@ -164,11 +155,11 @@ public final class Broadcasts {
     }
 
     private static TextFormatting getMainColor() {
-        return resolveColor(OverConfig.BROADCAST.mainColor, TextFormatting.YELLOW);
+        return resolveColor(OverConfig.BROADCAST.mainColor, TextFormatting.GRAY);
     }
 
     private static TextFormatting getOutroColor() {
-        return resolveColor(OverConfig.BROADCAST.outroColor, TextFormatting.YELLOW);
+        return resolveColor(OverConfig.BROADCAST.outroColor, TextFormatting.GRAY);
     }
 
     private static TextFormatting resolveColor(String configuredColor, TextFormatting fallback) {
