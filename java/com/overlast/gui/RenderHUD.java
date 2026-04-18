@@ -19,8 +19,6 @@ public class RenderHUD extends Gui {
 	private static final int PROGRESS_TEXT_GAP = 2;
 	private static final int MAX_TEXTURE_PHASE = 10;
 
-	//索引值
-	private static int EvoIndex=1;
 	//控制GUI开关
 	public static boolean switchhud = true;
 	public static boolean heldDirtyClock = false;
@@ -35,7 +33,6 @@ public class RenderHUD extends Gui {
 
 	// This method gets the correct stats of the player.  这个方法可以得到玩家的正确属性资料，通过服务端传入的数据包
 	public static void retrieveStats(int phase, int evolution,boolean showRequestDirtyClock) {
-		EvoIndex=phase;
 		EVOLUTION_BAR.setValue(evolution);
 		heldDirtyClock=showRequestDirtyClock;
 		switch(phase) {

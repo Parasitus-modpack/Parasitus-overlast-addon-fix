@@ -1,6 +1,5 @@
 package com.overlast.gui;
 
-import com.overlast.config.OverConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 

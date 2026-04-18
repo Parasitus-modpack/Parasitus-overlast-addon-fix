@@ -17,8 +17,6 @@ public class UtilityAccessor {
 
 	private static Method applyArmorCalculations;
 	
-	/** Accessible reference to {@code EnchantmentDurability#negateDamage */
-	private static Method negateDamage;
 	/** Accessible reference to {@code Enchantment#canApplyTogether */
 	private static Method canApplyTogether;
 	

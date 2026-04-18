@@ -14,7 +14,6 @@ import net.minecraft.block.BlockNetherWart;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.BlockStem;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
@@ -30,7 +29,6 @@ public class SeasonEvents {
 
     private static final int SEASON_SPRING = 0;
     private static final int SEASON_SUMMER = 1;
-    private static final int SEASON_FALL = 2;
     private static final int SEASON_WINTER = 3;
 
     @SubscribeEvent
